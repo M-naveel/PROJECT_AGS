@@ -12,6 +12,7 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
 
 
 ?>
+
 <!-- Filter  -->
  
  <div class="container mt-5">
@@ -21,6 +22,8 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
                placeholder="Search by Customer Name" 
                value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
     </div>
+    
+
     
     <div class="col-md-3">
         <select name="battery" class="form-select">
@@ -125,9 +128,10 @@ if ($result->num_rows > 0):
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
+      <?php endif; ?> <!-- Closing the if statement -->
       
+      <script src="./Js/myjs.js"></script>
       <!-- Footer -->
-    
     
     <?php include "Footer.php";?>
     

@@ -3,7 +3,19 @@ $pageTitle ="Add Customer";
 $pagename ="Add Customer Info";
 include __DIR__ . "/../Navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
-;
+
+// Fetch all active + not deleted batteries
+$BatterySql = "SELECT id, Model_Name 
+               FROM battery 
+               WHERE Status = 'active' AND is_deleted = 0";
+$BatteryResult = $conn->query($BatterySql);
+
+$batteries = [];
+while ($row = $BatteryResult->fetch_assoc()) {
+    $batteries[] = $row;
+}
+
+
 
 
 ?>
@@ -37,17 +49,6 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
       </div>
       <div class="col-6 mt-2">
         <div class="mb-3">
-        <select class="form-select form-control mt-4"  name="Battery_Model" aria-label="Battery Model">
-    <option selected disabled REQUUIRED>Open this select menu*</option>
-     <?php for ($i = 0; $i < count($row); $i++): ?>
-            <option value="<?= $row[$i]['Model_Name'] ?>">
-                <?= $row[$i]['Model_Name'] ?>
-            </option>
-        <?php endfor; ?>
-</select>
-
-
-=======
        <select class="form-select form-control mt-4" name="Battery_ID" aria-label="Battery Model" required>
     <option selected disabled>Open this select menu*</option>
     <?php for ($i = 0; $i < count($batteries); $i++): ?>
@@ -58,7 +59,6 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
 </select>
 
 
->>>>>>> Stashed changes
   
         </div>
       </div>
@@ -100,7 +100,7 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
         </div>
         
       </div>
-      <input type="button" class="btn  btn-lg btn-primary" name="cancel" value="Cancel" onclick="window.location.href=`/Battery_Electrolyte_Reminder/Index.php`;" />
+      <input type="button" class="btn  btn-lg btn-primary" name="cancel" value="Cancel" onclick="window.location.href=`/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;" />
     <button type="submit" class="btn  btn-lg btn-primary  ">Submit</button>
 
   </form>

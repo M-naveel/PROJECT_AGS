@@ -1,3 +1,4 @@
+
 <?php
 include "DatabaseCon.php";
 
@@ -48,6 +49,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $Add->close();
     $conn->close();
-    
-
-  }
+}
+?>

@@ -46,8 +46,8 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
     </div>
     <div class="d-flex">
          <div class="col-6">
-       <form action="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php" method="POST" style="display:inline-block;" >
-    <a href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-sm btn-primary">Delete</a>
+       <form action="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php" method="POST" style="display:inline-block;" >
+    <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-sm btn-primary">Delete</a>
 
 </form>
 </div>
