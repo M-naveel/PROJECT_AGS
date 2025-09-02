@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/../Navbar.php";
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php";
 
 include __DIR__ . "/../Class/DataAccessLayer/Editbattery.php";
 // Create an instance of the EditBattery class
@@ -28,14 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'Updated_By'   => $_POST['Updated_By'],
         'Updated_At'   => $_POST['Updated_At'],
     ];
-
+    
     // Update using the DAL
     $editBattery->updateBattery($id, $data);
-
+    
+    
     // Redirect to record list
     header("Location: Record.php");
     exit;
 }
+include __DIR__ . "/../Navbar.php";
 ?>
 
 <div class="container mt-5 Adjust_Screen">

@@ -1,6 +1,7 @@
 <?php 
 $pageTitle ="Record";
 $pagename ="Record";
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
 
 include __DIR__ . "/../Navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/Insert_Battery.php";
@@ -63,4 +64,4 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
 </div>
 
 <?php include "../Footer.php"; ?>
-<script src="../Js/myjs.js"></script>
+<!-- <script src="../Js/myjs.js"></script> -->

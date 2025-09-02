@@ -2,6 +2,7 @@
 $pageTitle ="Battery Form";
 $pagename ="Battery Form";
 
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php";
 include __DIR__ . "/../Navbar.php";
 ?>
 

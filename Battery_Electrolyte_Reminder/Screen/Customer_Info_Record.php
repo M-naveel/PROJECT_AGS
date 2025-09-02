@@ -1,6 +1,7 @@
 <?php 
 $pageTitle ="Customer_Info";
 $pagename ="Customer_Info";
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
 include __DIR__ . "/../Navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/Insert.php";
 include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
@@ -46,8 +47,8 @@ include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
                       </form>
                     </div>
                       <div class="col-6">
-                        <form action="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/CustomerDelete.php" method="POST" style="display:inline-block;" >
-                          <a href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/CustomerDelete.php?Id=<?= $row[$i]['Id']; ?>" class="btn btn-sm btn-primary">Delete</a>
+                        <form action="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/CustomerDelete.php" method="POST" style="display:inline-block;" >
+                          <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/CustomerDelete.php?Id=<?= $row[$i]['Id']; ?>" class="btn btn-sm btn-primary">Delete</a>
 
                         </form>
                       </div>
@@ -69,6 +70,6 @@ include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
 
   <?php include "../Footer.php"; ?>
 
-<script  src="../Js/myjs.js"></script>
+<!-- <script  src="../Js/myjs.js"></script> -->
 
 

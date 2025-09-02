@@ -5,13 +5,14 @@ $pageTitle ="DashBoard";
 $pagename ="DashBoard";
 
 // Include AuthCheck to protect page
-include __DIR__ . "/./Class/BLLayer/AuthCheck.php";
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
+include __DIR__ . "/../Navbar.php";
 
-include __DIR__ . "/Navbar.php";
-include __DIR__ ."/./Class/DataAccessLayer/DatabaseCon.php"; // your DB connection
-include __DIR__ . "/./Class/DataAccessLayer/GetCustomer.php";
-include __DIR__ . "/./Class/DataAccessLayer/GetBatteryName.php";
-include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
+
+include __DIR__ ."/../Class/DataAccessLayer/DatabaseCon.php"; // your DB connection
+include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
+include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
+include __DIR__ . "/../Class/DataAccessLayer/FilterIndex.php";
 // include __DIR__ . "/./Class/DataAccessLayer/Reminder.php";
 
 
@@ -20,44 +21,6 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
 <!-- Filter  -->
  <!-- We don't need for any other filter to filter the record we can filter the record by Using the Jquery DataTable By Name , By Date and By Battey Whatever we it will bring the data if matches or it will show no data found Even If we are told to make a filter other than dataTable so In the Reminder.php lies the code for Filter which we can use -->
 
-<div class="container mt-5">
-    <form method="GET" class="row g-3 mb-4 Adjust_screen">
-        <div class="col-md-4">
-            <input type="text" name="customer" class="form-control"
-                   placeholder="Search by Customer Name"
-                   value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
-        </div>
-
-        <div class="col-md-3">
-            <select name="battery" class="form-select">
-                <option value="">All Batteries</option>
-                <?php
-                $batteryRes = $conn->query("SELECT Id, Model_Name FROM battery WHERE is_deleted = 0");
-                while ($b = $batteryRes->fetch_assoc()):
-                    $selected = ($_GET['battery'] ?? '') == $b['Id'] ? 'selected' : '';
-                ?>
-                    <option value="<?= $b['Id'] ?>" <?= $selected ?>><?= htmlspecialchars($b['Model_Name']) ?></option>
-                <?php endwhile; ?>
-            </select>
-        </div>
-
-        <!-- Start Date -->
-        <div class="col-md-3">
-            <input type="date" name="start_date" class="form-control"
-                   value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>">
-        </div>
-
-        <!-- End Date -->
-        <div class="col-md-3">
-            <input type="date" name="end_date" class="form-control"
-                   value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>">
-        </div>
-
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Filter</button>
-        </div>
-    </form>
-</div>
 
 
 <!-- Filter ends here -->
@@ -115,12 +78,13 @@ if ($result->num_rows > 0):
             <td class="<?= $statusClass ?>"><?= $statusText; ?></td>
         </tr>
     <?php endwhile; ?>
-
+<?php else: ?>
+    <tr><td colspan="8" class="text-center">No batteries found.</td></tr>
     <?php endif; ?>
 </tbody>
 </table>
 </div>
-<?php include "Footer.php";?>
+<?php include __DIR__ ."/../Footer.php";?>
 
 <?php if (!empty($alerts)): ?>
 <!-- Bootstrap Modal -->

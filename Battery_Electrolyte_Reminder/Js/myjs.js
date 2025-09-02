@@ -4,6 +4,11 @@
 //     });
  $(document).ready(function() {
     $('#DataTable').DataTable({
+        
+        
+        language: {
+            emptyTable: "No batteries found for the selected date range"
+        },
         dom: 'Blfrtip', // "l" = length menu, "B" = buttons
         lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ], // Options for dropdown
         buttons: [
@@ -35,8 +40,13 @@
 // for edit button on the battery record page
 
 // Index.php fuction to call the modal box
-   window.onload = function() {
-        var alertModal = new bootstrap.Modal(document.getElementById('batteryAlertModal'));
-        alertModal.show();
-    }
-
+document.getElementById('Notificationbell').addEventListener('click', function (e) {
+    e.preventDefault(); // prevent page reload if <a href="#">
+    var alertModal = new bootstrap.Modal(document.getElementById('batteryAlertModal'));
+    alertModal.show();
+});
+// $(document).ready(function() {
+//     $('#DataTable').DataTable({
+        
+//     });
+// });

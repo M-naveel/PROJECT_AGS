@@ -1,8 +1,10 @@
 <?php 
 $pageTitle ="Add Customer";
 $pagename ="Add Customer Info";
-include __DIR__ . "/../Navbar.php";
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
 include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
+include __DIR__ . "/../Navbar.php";
+
 
 // Fetch all active + not deleted batteries
 $BatterySql = "SELECT id, Model_Name 

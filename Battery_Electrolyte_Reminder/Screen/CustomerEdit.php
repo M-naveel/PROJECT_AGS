@@ -1,4 +1,5 @@
 <?php
+include __DIR__ . "/../Class/BLLayer/AuthCheck.php";
  include __DIR__ . "/../Navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/EditCustomer.php";
 
