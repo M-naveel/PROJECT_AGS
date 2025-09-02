@@ -19,6 +19,7 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
                placeholder="Search by Customer Name" 
                value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
     </div>
+    
     <div class="col-md-3">
         <select name="battery" class="form-select">
             <option value="">All Batteries</option>
