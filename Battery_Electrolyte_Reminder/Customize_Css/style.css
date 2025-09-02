@@ -62,7 +62,11 @@
 
 /* to adjust the view_records screen */
  .Adjust_screen{
+<<<<<<< Updated upstream
     margin-left:200px;
+=======
+    margin-left:250px;
+>>>>>>> Stashed changes
   }
   .menu_style{
     list-style: none;

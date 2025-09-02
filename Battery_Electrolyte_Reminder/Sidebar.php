@@ -1,6 +1,10 @@
 
 
+<<<<<<< Updated upstream
 <?php include "Header.php"?>
+=======
+<?php include __DIR__ . "/Header.php"?>
+>>>>>>> Stashed changes
 
    <!-- Sidebar CSS  -->
 
@@ -9,7 +13,11 @@
   
 
   <div class="menu-section">
+<<<<<<< Updated upstream
     <a href="/Battery_Electrolyte_Reminder/Index.php" class="active"><i class="fa-solid fa-circle "></i> Dashboard</a>
+=======
+    <a href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php" class="active"><i class="fa-solid fa-circle "></i> Dashboard</a>
+>>>>>>> Stashed changes
   </div>
 
 <div class=" menu-section">
@@ -20,8 +28,13 @@
 
   <a href="" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded="true">Forms</a><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
+<<<<<<< Updated upstream
     <a class="dropdown-item" href="/Battery_Electrolyte_Reminder/Screen/battery_Form.php"> Add Battery info</a>
     <a class="dropdown-item" href="/Battery_Electrolyte_Reminder/Screen/Record.php"> View Records</a>
+=======
+    <a class="dropdown-item" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/battery_Form.php"> Add Battery info</a>
+    <a class="dropdown-item" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php"> View Records</a>
+>>>>>>> Stashed changes
     
   </div>    
 </div>
@@ -32,8 +45,13 @@
       <div class="dropdown mt-2">
   <a href="" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded="true">Views</a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<<<<<<< Updated upstream
     <a class="dropdown-item" href="/Battery_Electrolyte_Reminder/Screen/Add_Customer_Info.php"> Add Customer info</a>
     <a class="dropdown-item" href="/Battery_Electrolyte_Reminder/Screen/Customer_Info_Record.php"> Customer info Record</a>
+=======
+    <a class="dropdown-item" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Add_Customer_Info.php"> Add Customer info</a>
+    <a class="dropdown-item" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Customer_Info_Record.php"> Customer info Record</a>
+>>>>>>> Stashed changes
     
   </div>
 </div>
