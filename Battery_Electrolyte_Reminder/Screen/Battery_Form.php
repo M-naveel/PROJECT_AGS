@@ -105,7 +105,7 @@ include __DIR__ . "/../Navbar.php";
 
             type="datetime-local"
             class="form-control"
-            id="Updated_At"
+            id="Sale_Date"
             name="Sale_Date"
             
           />
@@ -114,7 +114,7 @@ include __DIR__ . "/../Navbar.php";
     </div>
     <div class="col-6 mt-3">
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
-  <button type="button" class="btn   btn-Secondary mt-3"  onclick="window.location.href=`/Battery_Electrolyte_Reminder/Index.php`;"  >Clear</button>
+  <button type="button" class="btn   btn-Secondary mt-3"  onclick="window.location.href=`/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;"  >Clear</button>
   
     </div>
   </div>

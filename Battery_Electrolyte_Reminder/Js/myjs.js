@@ -34,3 +34,9 @@
 // button end here
 // for edit button on the battery record page
 
+// Index.php fuction to call the modal box
+   window.onload = function() {
+        var alertModal = new bootstrap.Modal(document.getElementById('batteryAlertModal'));
+        alertModal.show();
+    }
+
