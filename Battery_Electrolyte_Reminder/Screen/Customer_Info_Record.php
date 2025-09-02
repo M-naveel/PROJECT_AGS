@@ -9,7 +9,7 @@ include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
 ?>
   <div class="container mx:0  
  Adjust_screen">
-    <h2 class="mb-4">Customer Info Record </h2>
+    <h2 class="mb-4"><?php echo $pagename ?? "System" ?></h2>
 
     <table class="table table-bordered" id="DataTable">
         <thead>

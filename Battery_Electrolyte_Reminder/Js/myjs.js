@@ -15,15 +15,15 @@
             'copy',
             {
                 extend: 'csvHtml5',
-                title: 'My CSV Data'
+                title: '<?php echo $pagename ?? "System" ?>'
             },
             {
                 extend: 'excelHtml5',
-                title: 'My Excel Data'
+                title: '<?php echo $pagename ?? "System" ?>'
             },
                 {
                 extend: 'pdfHtml5',
-                title: 'My PDF Data',
+                title: '<?php echo $pagename ?? "System" ?>',
                 orientation: 'portrait',  // or 'landscape'
                 pageSize: 'A4',           // A4, A3, Letter, etc.
                 exportOptions: {
@@ -45,8 +45,3 @@ document.getElementById('Notificationbell').addEventListener('click', function (
     var alertModal = new bootstrap.Modal(document.getElementById('batteryAlertModal'));
     alertModal.show();
 });
-// $(document).ready(function() {
-//     $('#DataTable').DataTable({
-        
-//     });
-// });

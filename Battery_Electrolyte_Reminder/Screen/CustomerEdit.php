@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <div class="container mt-5 Adjust_Screen">
-    <h2>Edit Customer</h2>
+    <h2><?php echo $pagename ?? "System" ?></h2>
     <form method="POST">
         <input type="hidden" name="Id" value="<?= htmlspecialchars($Customer['Id']); ?>">
 

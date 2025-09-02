@@ -1,6 +1,6 @@
 <?php 
-$pageTitle ="Record";
-$pagename ="Record";
+$pageTitle ="Battery Record";
+$pagename ="Battery Record";
 include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
 
 include __DIR__ . "/../Navbar.php";
@@ -11,7 +11,7 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
 ?>
 
 <div class="container Adjust_screen my-5">
-    <h2 class="mb-4 flex-grow-1">Battery Record Submitted</h2>
+    <h2 class="mb-4 flex-grow-1"><?php echo $pagename ?? "System" ?></h2>
 
     <table class="table table-bordered" id="DataTable">
         <thead>

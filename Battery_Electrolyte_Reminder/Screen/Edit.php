@@ -41,7 +41,7 @@ include __DIR__ . "/../Navbar.php";
 ?>
 
 <div class="container mt-5 Adjust_Screen">
-    <h2>Edit Battery</h2>
+    <h2><?php echo $pagename ?? "System" ?></h2>
     <form method="POST">
         <div class="mb-3">
             <label for="Model_Name" class="form-label">Model Name</label>
