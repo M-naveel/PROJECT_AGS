@@ -24,7 +24,7 @@
 
 <div class="row mt-5">
      <?php include "Sidebar.php"; ?></div>
-     <script src="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/js/popper.min.js" ></script>
+     <script src="/Battery_Electrolyte_Reminder/js/popper.min.js" ></script>
 
 
 

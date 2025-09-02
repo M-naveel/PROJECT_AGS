@@ -1,6 +1,6 @@
 <?php 
 $pageTitle ="Add Form";
-$pagename ="Dispa";
+$pagename ="Add Form";
 
 include "DatabaseCon.php"; // your DB connection
 
@@ -52,6 +52,5 @@ $result = $conn->query($sql);
     </table>
 </div>
 
-
-
+<
 <?php include "../Footer.php"?>

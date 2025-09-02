@@ -14,20 +14,20 @@
 <!--  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
-<script src="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Js/bootstrap.bundle.min.js"></script>
+<script src="/Battery_Electrolyte_Reminder/Js/bootstrap.bundle.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
 
 <!-- DataTables CSS -->
-<link rel="stylesheet" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Customize_Css/dataTables.dataTables.min.css" />
-<link rel="stylesheet" href="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Customize_Css/style.css" />
+<link rel="stylesheet" href="/Battery_Electrolyte_Reminder/Customize_Css/dataTables.dataTables.min.css" />
+<link rel="stylesheet" href="/Battery_Electrolyte_Reminder/Customize_Css/style.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
 <!-- jQuery (only once) -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 <!-- DataTables JS -->
-<script src="/GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Js/dataTables.min.js"></script>
+<script src="/Battery_Electrolyte_Reminder/Js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <!-- mycode -->

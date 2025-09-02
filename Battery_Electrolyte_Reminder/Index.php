@@ -1,4 +1,6 @@
-<?php 
+
+    
+  <?php 
 $pageTitle ="DashBoard";
 $pagename ="DashBoard";
 include __DIR__ . "/Navbar.php";
@@ -123,25 +125,7 @@ if ($result->num_rows > 0):
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
-  </div>
-</div>
-
-<script src="./Js/myjs.js"></script>
-<?php endif; ?>
-
-<!-- On Page load alerts will checks if alert is not empty if it is empty 
- it will run a foreach loop to get the values if any then save it to the array and 
- then print it in the modal box line by line 
-<?php if (!empty($alerts)): ?>
-<script>
-    window.onload = function() {
-        <?php foreach ($alerts as $alert): ?>
-            alert("<?= addslashes($alert) ?>");
-        <?php endforeach; ?>
-    }
-</script>
-<?php endif; ?> -->
-
+      
       <!-- Footer -->
     
     

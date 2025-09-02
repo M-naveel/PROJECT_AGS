@@ -1,4 +1,5 @@
 <?php
+
 include "DatabaseCon.php";
 
 // Default values for soft-delete
@@ -42,4 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $Add->close();
     $conn->close();
-}
+    
+
+  }
