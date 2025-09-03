@@ -18,3 +18,4 @@ if ($conn->connect_error) {
 // echo "You are connected";
 // echo "<script> alert(`You are connected`)</script>";
 ?>
+

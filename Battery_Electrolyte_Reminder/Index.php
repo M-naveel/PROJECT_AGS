@@ -3,7 +3,7 @@
   <?php 
 $pageTitle ="DashBoard";
 $pagename ="DashBoard";
-
+$Heading ="Battery Electrolyte Reminder DashBoard ";
 
 
 
@@ -19,53 +19,62 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
 // include __DIR__ . "/./Class/DataAccessLayer/Reminder.php";
 
 ?>
+<div class="container my-5 Adjust_screen">
+    <h2 class="text-center" id="title">Battery Electrolyte Reminder</h2>
+    <hr>
 
 <!-- Filter  -->
  <!-- We don't need for any other filter to filter the record we can filter the record by Using the Jquery DataTable By Name , By Date and By Battey Whatever we it will bring the data if matches or it will show no data found Even If we are told to make a filter other than dataTable so In the Reminder.php lies the code for Filter which we can use -->
 
-<div class="container mt-5">
-    <form method="GET" class="row g-3 mb-4 Adjust_screen">
-        <div class="col-md-4">
-            <input type="text" name="customer" class="form-control"
-                   placeholder="Search by Customer Name"
-                   value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
-        </div>
+<div class="container">
+    <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto px-2">Filter</legend>
+        <form method="GET" class="row g-3">
+            <!-- Customer Name -->
+            <div class="col-md-4">
+                <input type="text" name="customer" class="form-control"
+                       placeholder="Search by Customer Name"
+                       value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
+            </div>
 
-        <div class="col-md-3">
-            <select name="battery" class="form-select">
-                <option value="">All Batteries</option>
-                <?php
-                $batteryRes = $conn->query("SELECT Id, Model_Name FROM battery WHERE is_deleted = 0");
-                while ($b = $batteryRes->fetch_assoc()):
-                    $selected = ($_GET['battery'] ?? '') == $b['Id'] ? 'selected' : '';
-                ?>
-                    <option value="<?= $b['Id'] ?>" <?= $selected ?>><?= htmlspecialchars($b['Model_Name']) ?></option>
-                <?php endwhile; ?>
-            </select>
-        </div>
+            <!-- Battery Dropdown -->
+            <div class="col-md-3">
+                <select name="battery" class="form-select">
+                    <option value="">All Batteries</option>
+                    <?php
+                    $batteryRes = $conn->query("SELECT Id, Model_Name FROM battery WHERE is_deleted = 0");
+                    while ($b = $batteryRes->fetch_assoc()):
+                        $selected = ($_GET['battery'] ?? '') == $b['Id'] ? 'selected' : '';
+                    ?>
+                        <option value="<?= $b['Id'] ?>" <?= $selected ?>>
+                            <?= htmlspecialchars($b['Model_Name']) ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
 
-        <!-- Start Date -->
-        <div class="col-md-3">
-            <input type="date" name="start_date" class="form-control"
-                   value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>">
-        </div>
+            <!-- Start Date -->
+            <div class="col-md-3">
+                <input type="date" name="start_date" class="form-control"
+                       value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>">
+            </div>
 
-        <!-- End Date -->
-        <div class="col-md-3">
-            <input type="date" name="end_date" class="form-control"
-                   value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>">
-        </div>
+            <!-- End Date -->
+            <div class="col-md-3">
+                <input type="date" name="end_date" class="form-control"
+                       value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>">
+            </div>
 
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Filter</button>
-        </div>
-    </form>
+            <!-- Submit Button -->
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+        </form>
+    </fieldset>
 </div>
 
 
 <!-- Filter ends here -->
-<div class="container my-5 Adjust_screen">
-    <h2 id="title">Battery Electrolyte Reminder DashBoard</h2>
     <table class="table table-bordered mt-3 " id="DataTable">
         <thead>
             <tr>

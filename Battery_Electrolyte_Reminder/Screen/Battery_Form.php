@@ -10,7 +10,8 @@ include __DIR__ . "/../Navbar.php";
 
     
 <div class="container  Adjust_screen">
-  <form action="Record.php" method="post" id="Record_Form">
+  <form action="../Class/BLLayer/BatteryHandler.php" method="POST" id="Record_Form">
+
         <h1 class="mt-5">Battery Form</h1>
         <div class="row">
         <div class="col-6">
@@ -45,23 +46,7 @@ include __DIR__ . "/../Navbar.php";
         </div>
         </div>
   
-  <div class="row">
   
- <div class="col-6">
-          <div class="mb-3">
-            <label for="Battery_Code" class="form-label">Battery_Code*</label>
-            <input 
-            type="text"
-            class="form-control"
-            id="Battery_Code"
-            name="Battery_Code"
-            pattern="^[A-Z0-9]{3,10}$" 
- placeholder="e.g. DC150 or SP2000"
-            placeholder="Battery_Code" required/>
-          
-          </div>
-        </div>
-  </div>
   <div class="row">
 
     <div class="col-6">
@@ -73,11 +58,26 @@ include __DIR__ . "/../Navbar.php";
             </select>
         </div>
     </div>
+      
+ <div class="col-6">
+          <div class="mb-3">
+            <label for="Battery_Code" class="form-label">Battery_Code*</label>
+            <input 
+            type="text"
+            class="form-control"
+            id="Battery_Code"
+            name="Battery_Code"
+            pattern="^[A-Z0-9]{3,10}$" 
+             placeholder="e.g. DC150 or SP2000"
+            placeholder="Battery_Code" required/>
+          
+          </div>
+        </div>
   </div>
  
     <div class="col-6 mt-3">
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
- <input type="button" class="btn  btn-lg btn-primary" name="cancel" value="Cancel" onclick="window.location.href=`/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;" />
+ <input type="button" class="btn mt-3  btn-dark" name="cancel" value="Cancel" onclick="window.location.href=`/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;" />
   
     </div>
   </div>

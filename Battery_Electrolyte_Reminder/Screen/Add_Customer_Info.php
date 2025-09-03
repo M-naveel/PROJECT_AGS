@@ -51,7 +51,7 @@ while ($row = $BatteryResult->fetch_assoc()) {
       </div>
       <div class="col-6 mt-2">
         <div class=">
-          <label for="Battery_ID" class="form-label "required>Select Battery*</label>
+          <label for="Battery_ID class="form-label "required>Select Battery*</label>
           <select class="form-select form-control " name="Battery_ID" aria-label="Battery Model" required>
           <?php for ($i = 0; $i < count($batteries); $i++): ?>
           <option value="<?= $batteries[$i]['id'] ?>">
@@ -74,8 +74,8 @@ while ($row = $BatteryResult->fetch_assoc()) {
 
         
       </div>
-      <input type="button" class="btn  btn-lg btn-primary" name="cancel" value="Cancel" onclick="window.location.href=`/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;" />
-    <button type="submit" class="btn  btn-lg btn-primary  ">Submit</button>
+      <button type="submit" class="btn  btn-lg btn-primary ">Submit</button>
+      <input type="button" class="btn  btn-lg btn-dark" name="cancel" value="Cancel" onclick="window.location.href=`/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php`;" />
 
   </form>
 </div>

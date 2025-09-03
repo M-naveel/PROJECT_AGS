@@ -3,12 +3,17 @@ $pageTitle ="Battery Record";
 $pagename ="Battery Record";
 
 include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
-
 include __DIR__ . "/../Navbar.php";
-include __DIR__ . "/../Class/DataAccessLayer/Insert_Battery.php";
-include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
+include __DIR__ . "/../Class/DataAccessLayer/DatabaseCon.php";
+include __DIR__ . "/../Class/DataAccessLayer/BatteryDAL.php";
+
+// include __DIR__ . "/../Class/DataAccessLayer/Insert_Battery.php";
+// include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
 // include __DIR__ . "/../Class/DataAccessLayer/EditbatteryName.php";
 // include __DIR__ . "/../Class/DataAccessLayer/Delete_battery.php";
+
+$batteryDAL = new BatteryDAL($conn);
+$batteries = $batteryDAL->getAllBatteries();
 ?>
 
 <div class="container Adjust_screen my-5">

@@ -41,7 +41,7 @@ include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
               <form action="CustomerEdit.php" method="POST">
                 <a
                   href="CustomerEdit.php?Id=<?= $row[$i]['Id']; ?>"
-                  class="btn btn-sm btn-primary"
+                  class="btn btn-primary"
                   >Edit</a
                 >
               </form>
@@ -52,7 +52,7 @@ include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
               >
                 <a
                   href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/CustomerDelete.php?Id=<?= $row[$i]['Id']; ?>"
-                  class="btn btn-sm btn-danger"
+                  class="btn  btn-danger"
                   >Delete</a
                 >
               </form>
