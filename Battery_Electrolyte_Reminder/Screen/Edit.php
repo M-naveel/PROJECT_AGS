@@ -1,4 +1,5 @@
 <?php
+$pagename ="Battery Edit Form";
 include __DIR__ . "/../Class/BLLayer/AuthCheck.php";
 
 include __DIR__ . "/../Class/DataAccessLayer/Editbattery.php";
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'Battery_Code' => $_POST['Battery_Code'],
         'Sale_Date'    => $_POST['Sale_Date'],
         'Status'       => $_POST['Status'],
-        'Updated_By'   => $_POST['Updated_By'],
-        'Updated_At'   => $_POST['Updated_At'],
+        'Updated_By'   => $_SESSION['username'],
+        'Updated_At'   => date('Y-m-d H:i:s')
     ];
     
     // Update using the DAL
@@ -45,22 +46,18 @@ include __DIR__ . "/../Navbar.php";
     <form method="POST">
         <div class="mb-3">
             <label for="Model_Name" class="form-label">Model Name</label>
-            <input type="text" id="Model_Name" name="Model_Name" class="form-control" value="<?= htmlspecialchars($battery['Model_Name']); ?>" required>
+            <input type="text"  pattern="^^[A-Za-z]+(?:-[A-Za-z]+)?\s\d{2,4}$" id="Model_Name" name="Model_Name" placeholder="e.g. DC 150 or SP-Tall 2000"  class="form-control" value="<?= htmlspecialchars($battery['Model_Name']); ?>" required>
         </div>
 
         <div class="mb-3">
             <label for="Warranty_No" class="form-label">Warranty No</label>
-            <input type="text" id="Warranty_No" name="Warranty_No" class="form-control" value="<?= htmlspecialchars($battery['Warranty_No']); ?>" required>
+            <input type="text" id="Warranty_No" pattern="^[A-Za-z0-9]{12}$"  placeholder="e.g. AB12CD34EF56" name="Warranty_No" class="form-control" value="<?= htmlspecialchars($battery['Warranty_No']); ?>" required>
         </div>
 
         <div class="mb-3">
             <label for="Battery_Code" class="form-label">Battery Code</label>
-            <input type="text" id="Battery_Code" name="Battery_Code" class="form-control" value="<?= htmlspecialchars($battery['Battery_Code']); ?>" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="Sale_Date" class="form-label">Sale Date</label>
-            <input type="datetime-local" id="Sale_Date" name="Sale_Date" class="form-control" value="<?= htmlspecialchars($battery['Sale_Date'] ??''); ?>">
+            <input type="text" pattern="^[A-Z0-9]{3,10}$" 
+ placeholder="e.g. DC150 or SP2000" id="Battery_Code" name="Battery_Code" class="form-control" value="<?= htmlspecialchars($battery['Battery_Code']); ?>" required>
         </div>
 
         <div class="mb-3">
@@ -69,16 +66,6 @@ include __DIR__ . "/../Navbar.php";
                 <option value="active" <?= $battery['Status'] === 'active' ? 'selected' : ''; ?>>Active</option>
                 <option value="inactive" <?= $battery['Status'] === 'inactive' ? 'selected' : ''; ?>>Inactive</option>
             </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="Updated_By" class="form-label">Updated By</label>
-            <input type="text" id="Updated_By" name="Updated_By" class="form-control" value="<?= htmlspecialchars($battery['Updated_By'] ?? ''); ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="Updated_At" class="form-label">Updated At</label>
-            <input type="datetime-local" id="Updated_At" name="Updated_At" class="form-control" value="<?= htmlspecialchars($battery['Updated_At'] ?? ''); ?>">
         </div>
 
         <button type="submit" class="btn btn-success mb-5">Update</button>

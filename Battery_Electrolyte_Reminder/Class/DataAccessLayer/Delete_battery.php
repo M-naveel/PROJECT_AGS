@@ -1,46 +1,31 @@
 <?php 
+session_start(); // make sure session is active
 include "DatabaseCon.php";
 
 if (isset($_GET['Id'])) {
-    $id = intval($_GET['Id']); // sanitize input
+    $id = intval($_GET['Id']);
+    $deletedBy = $_SESSION['username'];
+       $deletedAt = date('Y-m-d H:i:s');  
 
-    $sql = "UPDATE battery SET is_deleted = 1 WHERE Id = ?";
+    $sql = "UPDATE battery 
+            SET is_deleted = 1, Deleted_At = NOW(), Deleted_By = ? 
+            WHERE Id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+    $stmt->bind_param("si", $deletedBy, $id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo "Customer soft-deleted successfully.";
+        echo "<script>alert('Battery row-deleted successfully.'); 
+              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php';</script>";
     } else {
-        echo "No record found or already deleted.";
+        echo "<script>alert('No record found or already deleted.'); 
+              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php';</script>";
     }
-    
-    header("Location: /GitHub/PROJECT_AGS/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php");
+
     $stmt->close();
     $conn->close();
 } else {
     echo "No battery ID specified.";
 }
+
 ?>
-
-// // Fetch Data (GET request, listing active records)
-// $sql_fetch = "SELECT * FROM battery WHERE Status_bar = 'active'";
-// $result = $conn->query($sql_fetch);
-
-// // Fetch single record if ID is provided
-// $battery = null;
-// if (isset($_GET['Id'])) {
-//     $Id = intval($_GET['Id']);
-//     $sql_single = "SELECT * FROM battery WHERE Id = ? AND Status_bar = 'active'";
-//     $stmt_single = $conn->prepare($sql_single);
-//     $stmt_single->bind_param("i", $Id);
-//     $stmt_single->execute();
-//     $result_single = $stmt_single->get_result();
-//     $battery = $result_single->fetch_assoc();
-
-//     if (!$battery) {
-//         die("Record not found.");
-//     }
-// }
-// ?>
-

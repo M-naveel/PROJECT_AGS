@@ -2,10 +2,12 @@
 <?php
 include "DatabaseCon.php";
 
+
 // Default values for soft delete
 $DeletedAt = null;
 $DeletedBy = null;
 $is_deleted = 0;
+$Status = 'active';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Customer_Name = $_POST['Customer_Name'];
@@ -13,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email         = $_POST['Email'];
     $Battery_ID    = $_POST['Battery_ID']; 
     /* comes from <select value="<?= $row['id'] ?>">*/
-    $Updated_By    = $_POST['Updated_By'] ?? null;
-    $Updated_At    = $_POST['Updated_At'] ?? null;
+    $Updated_By    = $_SESSION['username'] ?? null;
+    // $Updated_At    = $_POST['Updated_At'] ?? null;
     $Sale_Date     = $_POST['Sale_Date'] ?? null;
-    $Status        = $_POST['Status'] ?? 'active';
+    
 
     $Sql = "INSERT INTO sale
         (Customer_Name, Phone_Number, Email, Battery_ID, Updated_By, Updated_At, Sale_Date, Status, Deleted_At, Deleted_By, is_deleted)

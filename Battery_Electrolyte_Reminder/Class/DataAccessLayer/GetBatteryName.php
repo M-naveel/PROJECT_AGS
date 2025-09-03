@@ -1,7 +1,7 @@
 <?php 
 include __DIR__ . "/DatabaseCon.php";
 
-$Sql = "SELECT Id, Model_Name, Warranty_No, Battery_Code, Updated_At, Updated_By, Sale_Date 
+$Sql = "SELECT Id, Model_Name, Warranty_No, Battery_Code, Updated_At, Updated_By
         FROM battery 
         WHERE is_deleted = 0";
 

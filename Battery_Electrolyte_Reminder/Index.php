@@ -4,6 +4,10 @@
 $pageTitle ="DashBoard";
 $pagename ="DashBoard";
 
+
+
+
+
 // Include AuthCheck to protect page
 include __DIR__ . "/./Class/BLLayer/AuthCheck.php";
 
@@ -13,7 +17,6 @@ include __DIR__ . "/./Class/DataAccessLayer/GetCustomer.php";
 include __DIR__ . "/./Class/DataAccessLayer/GetBatteryName.php";
 include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
 // include __DIR__ . "/./Class/DataAccessLayer/Reminder.php";
-
 
 ?>
 
@@ -62,7 +65,7 @@ include __DIR__ . "/./Class/DataAccessLayer/FilterIndex.php";
 
 <!-- Filter ends here -->
 <div class="container my-5 Adjust_screen">
-    <h2>Battery Electrolyte Reminder Dashboard</h2>
+    <h2 id="title">Battery Electrolyte Reminder DashBoard</h2>
     <table class="table table-bordered mt-3 " id="DataTable">
         <thead>
             <tr>

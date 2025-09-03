@@ -12,7 +12,7 @@ class EditCustomer {
 
     // Fetch a customer by ID
     public function getCustomerById($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM sale WHERE Id=?");
+        $stmt = $this->conn->prepare("SELECT * FROM sale WHERE Id=? AND is_deleted=0");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -21,7 +21,7 @@ class EditCustomer {
 
     // Fetch all batteries (for dropdown)
     public function getAllBatteries() {
-        $result = $this->conn->query("SELECT * FROM battery");
+        $result = $this->conn->query("SELECT * FROM battery WHERE is_deleted=0");
         $batteries = [];
         while ($row = $result->fetch_assoc()) {
             $batteries[] = $row;
@@ -29,21 +29,22 @@ class EditCustomer {
         return $batteries;
     }
 
-    // Update customer record
+    // Update customer record (without Status, Updated_At handled properly)
     public function updateCustomer($id, $data) {
         $stmt = $this->conn->prepare(
-            "UPDATE sale SET Customer_Name=?, Phone_Number=?, Email=?, Battery_ID=?, Updated_By=?, Updated_At=?, Sale_Date=?, Status=? WHERE Id=?"
+            "UPDATE sale 
+             SET Customer_Name=?, Phone_Number=?, Email=?, Battery_ID=?, 
+                 Updated_By=?, Updated_At=NOW(), Sale_Date=? 
+             WHERE Id=? AND is_deleted=0"
         );
         $stmt->bind_param(
-            "ssssssssi",
+            "ssssssi",
             $data['Customer_Name'],
             $data['Phone_Number'],
             $data['Email'],
             $data['Battery_ID'],
             $data['Updated_By'],
-            $data['Updated_At'],
             $data['Sale_Date'],
-            $data['Status'],
             $id
         );
         $stmt->execute();

@@ -1,6 +1,7 @@
 <?php 
 $pageTitle ="Battery Record";
 $pagename ="Battery Record";
+
 include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
 
 include __DIR__ . "/../Navbar.php";
@@ -11,56 +12,44 @@ include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
 ?>
 
 <div class="container Adjust_screen my-5">
-    <h2 class="mb-4 flex-grow-1"><?php echo $pagename ?? "System" ?></h2>
+  <h2 id="title" class="mb-4 flex-grow-1">
+    <?php echo $pagename ?? "System" ?>
+  </h2>
 
-    <table class="table table-bordered" id="DataTable">
-        <thead>
-            <tr>
-                <th>Battery_Id</th>
-                <th>Model_Name</th>
-                <th>Warranty_No</th>
-                <th>Battery_Code</th>
-                <th>Updated_At</th>
-                <th>Updated_By</th>
-                <th>Sale_Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-       <tbody>
-    <?php for ($i = 0; $i < count($batteries); $i++): ?>
-        <tr>
-            <td><?= htmlspecialchars($batteries[$i]['Id']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Model_Name']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Warranty_No']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Battery_Code']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Updated_At']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Updated_By']); ?></td>
-            <td><?= htmlspecialchars($batteries[$i]['Sale_Date']); ?></td>
-            <td>
-                <div class="row">
-    <div class="d-flex gap-2">
-        <!-- Edit Form -->
-      
-           <a href="Edit.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+  <table class="table table-bordered" id="DataTable">
+    <thead>
+      <tr>
+        <th>Battery_Id</th>
+        <th>Model_Name</th>
+        <th>Warranty_No</th>
+        <th>Battery_Code</th>
+        <th>Updated_At</th>
+        <th>Updated_By</th>
+        <!-- <th>Sale_Date</th> -->
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php for ($i = 0; $i < count($batteries); $i++): ?>
+      <tr>
+        <td><?= htmlspecialchars($batteries[$i]['Id']); ?></td>
+        <td><?= htmlspecialchars($batteries[$i]['Model_Name']); ?></td>
+        <td><?= htmlspecialchars($batteries[$i]['Warranty_No']); ?></td>
+        <td><?= htmlspecialchars($batteries[$i]['Battery_Code']); ?></td>
+        <td><?= htmlspecialchars($batteries[$i]['Updated_At']); ?></td>
+        <td><?= htmlspecialchars($batteries[$i]['Updated_By']); ?></td>
 
-  
-    </div>
-    <div class="d-flex">
-         <div class="col-6">
-       <form action="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php" method="POST" style="display:inline-block;" >
-    <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-sm btn-primary">Delete</a>
-
-</form>
+        <td>
+          <div class="d-flex justify-content-center gap-2">
+  <a href="Edit.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-primary">Edit</a>
+  <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/DataAccessLayer/Delete_battery.php?Id=<?= $batteries[$i]['Id']; ?>" class="btn btn-danger">Delete</a>
 </div>
-    </div>
-    </div>
-</td>
 
-        </tr>
-    <?php endfor; ?>
-</tbody>
-
-    </table>
+        </td>
+      </tr>
+      <?php endfor; ?>
+    </tbody>
+  </table>
 </div>
 
 <?php include "../Footer.php"; ?>

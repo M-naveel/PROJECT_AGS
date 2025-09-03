@@ -8,8 +8,7 @@ $Sql = "SELECT
             s.Sale_Date,
             b.Model_Name AS Battery_Name,
             s.Updated_At,
-            s.Updated_By,
-            s.Status
+            s.Updated_By
         FROM sale s
         JOIN battery b ON s.Battery_ID = b.id
         WHERE s.Status = 'active' AND s.is_deleted = 0";

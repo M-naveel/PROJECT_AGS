@@ -34,21 +34,4 @@ if (isset($_SESSION['username'])) {
 
 </fieldset>
 </form>
-<!-- <script>
-    function Onlogin(){
-    var u_name = document.getElementById("UserName").value.trim() ;
-    var u_pass = document.getElementById("Password").value.trim() ;
-    if (u_name === "Admin" && u_pass === "Admin" ){
-        alert(`Welcome ${u_name}`);
-    }
-    else if(u_name === "User" && u_pass === "User" ){
-        alert(`Welcome ${u_name}`);
-    }
-    else{
-        alert("Invalid creditionals")
-    }
-}
-
-</script> -->
-
 <?php #include __DIR__. "/Footer.php";?>

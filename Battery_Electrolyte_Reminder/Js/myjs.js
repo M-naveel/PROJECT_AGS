@@ -1,8 +1,10 @@
-//  $(document).ready(function() {
-//         $('#DataTable').DataTable();
-        
-//     });
- $(document).ready(function() {
+
+
+$(document).ready(function() {
+    
+    var title_name = $("#title").text();
+    
+    
     $('#DataTable').DataTable({
         
         
@@ -15,17 +17,18 @@
             'copy',
             {
                 extend: 'csvHtml5',
-                title: '<?php echo $pagename ?? "System" ?>'
+                title: title_name
             },
             {
                 extend: 'excelHtml5',
-                title: '<?php echo $pagename ?? "System" ?>'
+                title: title_name
             },
                 {
                 extend: 'pdfHtml5',
-                title: '<?php echo $pagename ?? "System" ?>',
+                title: title_name,
                 orientation: 'portrait',  // or 'landscape'
-                pageSize: 'A4',           // A4, A3, Letter, etc.
+                
+                Size: 'A4',           // A4, A3, Letter, etc.
                 exportOptions: {
                     columns: ':visible'   // Export only visible columns
                 }
@@ -44,4 +47,21 @@ document.getElementById('Notificationbell').addEventListener('click', function (
     e.preventDefault(); // prevent page reload if <a href="#">
     var alertModal = new bootstrap.Modal(document.getElementById('batteryAlertModal'));
     alertModal.show();
+});
+
+// function to automatically correct the code  for the phone Number 
+$(document).ready(function () {
+    $("#Phone_Number").on("blur", function () {
+        let val = $(this).val().trim();
+
+        // If user typed only digits and not starting with +92
+        if (/^[0-9]{10,11}$/.test(val)) {
+            $(this).val("+92" + val.replace(/^0/, "")); 
+        }
+
+        // If user typed 0 at start (like 0300...) → convert
+        else if (/^0[0-9]{9,10}$/.test(val)) {
+            $(this).val("+92" + val.substring(1));
+        }
+    });
 });
