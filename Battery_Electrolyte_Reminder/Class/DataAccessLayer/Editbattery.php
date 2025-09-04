@@ -1,4 +1,5 @@
-<?php
+<?php 
+// don't need this page 
 class EditBattery {
     private $conn;
 

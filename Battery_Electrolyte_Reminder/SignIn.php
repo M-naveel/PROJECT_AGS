@@ -1,5 +1,5 @@
 <?php
-include "Header.php";
+include "header.php";
 session_start();
 // Start session to check if user is already logged in
 
@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])) {
     header("Location: Index.php");
     exit;
 }
-// include __DIR__ . "/Navbar.php";
+// include __DIR__ . "/navbar.php";
 ?>
 <form action="login_handler.php" method="POST">
     <fieldset>

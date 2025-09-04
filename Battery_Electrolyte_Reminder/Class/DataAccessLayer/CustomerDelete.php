@@ -1,3 +1,4 @@
+<!-- I dont need this page for deleting the customer -->
 <?php 
 include "DatabaseCon.php";
 session_start(); // make sure session is started to access $_SESSION
@@ -16,12 +17,12 @@ if (isset($_GET['Id'])) {
 if ($stmt->affected_rows > 0) {
         echo "<script>
                 alert('Customer Row deleted successfully.');
-                window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Customer_Info_Record.php';
+                window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInforecord.php';
               </script>";
     } else {
         echo "<script>
                 alert('No record found or already deleted.');
-                window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Customer_Info_Record.php';
+                window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInforecord.php';
               </script>";
     }
 
@@ -30,7 +31,7 @@ if ($stmt->affected_rows > 0) {
 } else {
     echo "<script>
             alert('No battery ID specified.');
-            window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Customer_Info_Record.php';
+            window.location.href = '/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInforecord.php';
           </script>";
 }
 ?>

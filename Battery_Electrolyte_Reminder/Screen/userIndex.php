@@ -1,110 +1,174 @@
-
-    
-  <?php 
+Attractive UI for dashboard
+<?php 
 $pageTitle ="DashBoard";
 $pagename ="DashBoard";
+$Heading ="Battery Electrolyte Reminder Dashboard";
 
-// Include AuthCheck to protect page
-include __DIR__ . "/../Class/BLLayer/AuthCheck.php"; 
-include __DIR__ . "/../Navbar.php";
+// Include authcheck to protect page
+include __DIR__ . "/./Class/BLLayer/authcheck.php";
+include __DIR__ . "/navbar.php";
+include __DIR__ ."/./Class/DataAccessLayer/DatabaseCon.php"; 
+include __DIR__ . "/./Class/DataAccessLayer/filterDAL.php";
+include __DIR__ . "/./Class/BLLayer/filterBLL.php";
 
-
-include __DIR__ ."/../Class/DataAccessLayer/DatabaseCon.php"; // your DB connection
-include __DIR__ . "/../Class/DataAccessLayer/GetCustomer.php";
-include __DIR__ . "/../Class/DataAccessLayer/GetBatteryName.php";
-include __DIR__ . "/../Class/DataAccessLayer/FilterIndex.php";
-// include __DIR__ . "/./Class/DataAccessLayer/Reminder.php";
-
-
+$filterBLL = new FilterBLL($conn);
+$filters = [
+    'customer'   => $_GET['customer'] ?? '',
+    'battery'    => $_GET['battery'] ?? '',
+    'start_date' => $_GET['start_date'] ?? '',
+    'end_date'   => $_GET['end_date'] ?? ''
+];
+$result = $filterBLL->getSalesWithFilters($filters);
 ?>
 
-<!-- Filter  -->
- <!-- We don't need for any other filter to filter the record we can filter the record by Using the Jquery DataTable By Name , By Date and By Battey Whatever we it will bring the data if matches or it will show no data found Even If we are told to make a filter other than dataTable so In the Reminder.php lies the code for Filter which we can use -->
-
-
-
-<!-- Filter ends here -->
 <div class="container my-5 Adjust_screen">
-    <h2>Battery Electrolyte Reminder Dashboard</h2>
-    <table class="table table-bordered mt-3 " id="DataTable">
-        <thead>
-            <tr>
-                <th>Customer Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Battery Model</th>
-                <th>Sale Date</th>
-                <th>Next Reminder Date</th>
-                <th>Days Since Sale</th>
-                <th>status</th>
-            </tr>
-        </thead>
- <tbody>
-<?php 
-// alert will store all the messages like an array to display the messages for the overdues or dues batteries
-$alerts = []; // store alert messages
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary" id="title">
+            🔋 Battery Electrolyte Reminder
+        </h2>
+        <p class="text-muted">Track upcoming, due, and overdue battery reminders</p>
+    </div>
 
-// Logic to calculate the check the current date from the sale date 
-// the floor is used to roundsdown the value like 1.7 to 1
-if ($result->num_rows > 0): 
-    while($row = $result->fetch_assoc()):
-        $todayTs = strtotime(date('Y-m-d'));
-        $saleTs  = strtotime($row['Sale_Date']);
-        $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
+    <!-- Filter Section -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <strong>Filter Records</strong>
+        </div>
+        <div class="card-body">
+            <form method="GET" class="row g-3">
+                <!-- Customer Name -->
+                <div class="col-md-4">
+                    <input type="text" name="customer" class="form-control"
+                           placeholder="Search by Customer Name"
+                           value="<?= htmlspecialchars($_GET['customer'] ?? '') ?>">
+                </div>
 
-        // Status logic
-        // it will check the status that how many days have been passed since the battery is sold
-        if ($daysSinceSale < 15) {
-            $statusText  = 'Upcoming';
-            $statusClass = 'text-success fw-bold';
-        } elseif ($daysSinceSale % 15 === 0) {
-            $statusText  = 'Due Today';
-            $statusClass = 'text-warning fw-bold';
-            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
-        } else {
-            $statusText  = 'Overdue';
-            $statusClass = 'text-danger fw-bold';
-            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
-        }
-    ?>
-        <tr>
-            <td><?= htmlspecialchars($row['Customer_Name']); ?></td>
-            <td><?= htmlspecialchars($row['Phone_Number']); ?></td>
-            <td><?= htmlspecialchars($row['Email']); ?></td>
-            <td><?= htmlspecialchars($row['Model_Name']); ?></td>
-            <td><?= htmlspecialchars($row['Sale_Date']); ?></td>
-            <td><?= htmlspecialchars($row['Next_Reminder_Date']); ?></td>
-            <td class="<?= $statusClass ?>"><?= $daysSinceSale; ?></td>
-            <td class="<?= $statusClass ?>"><?= $statusText; ?></td>
-        </tr>
-    <?php endwhile; ?>
-<?php else: ?>
-    <tr><td colspan="8" class="text-center">No batteries found.</td></tr>
-    <?php endif; ?>
-</tbody>
-</table>
+                <!-- Battery Dropdown -->
+                <div class="col-md-3">
+                    <select name="battery" class="form-select">
+                        <option value="">All Batteries</option>
+                        <?php
+                        $batteryRes = $conn->query("SELECT Id, Model_Name FROM battery WHERE is_deleted = 0");
+                        while ($b = $batteryRes->fetch_assoc()):
+                            $selected = ($_GET['battery'] ?? '') == $b['Id'] ? 'selected' : '';
+                        ?>
+                            <option value="<?= $b['Id'] ?>" <?= $selected ?>>
+                                <?= htmlspecialchars($b['Model_Name']) ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+
+                <!-- Start Date -->
+                <div class="col-md-2">
+                    <input type="date" name="start_date" class="form-control"
+                           value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>">
+                </div>
+
+                <!-- End Date -->
+                <div class="col-md-2">
+                    <input type="date" name="end_date" class="form-control"
+                           value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="bi bi-search">Search</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <strong>Battery Records</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-striped align-middle" id="DataTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Battery Model</th>
+                        <th>Sale Date</th>
+                        <th>Next Reminder</th>
+                        <th>Days Since Sale</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                $alerts = []; 
+                if ($result->num_rows > 0): 
+                    while($row = $result->fetch_assoc()):
+                        $todayTs = strtotime(date('Y-m-d'));
+                        $saleTs  = strtotime($row['Sale_Date']);
+                        $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
+
+                        // Status logic
+                        if ($daysSinceSale < 15) {
+                            $statusText  = 'Upcoming';
+                            $statusBadge = 'success';
+                        } elseif ($daysSinceSale % 15 === 0) {
+                            $statusText  = 'Due Today';
+                            $statusBadge = 'warning';
+                            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
+                        } else {
+                            $statusText  = 'Overdue';
+                            $statusBadge = 'danger';
+                            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
+                        }
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['Customer_Name']); ?></td>
+                        <td><?= htmlspecialchars($row['Phone_Number']); ?></td>
+                        <td><?= htmlspecialchars($row['Email']); ?></td>
+                        <td><?= htmlspecialchars($row['Model_Name']); ?></td>
+                        <td><?= htmlspecialchars($row['Sale_Date']); ?></td>
+                        <td><?= htmlspecialchars($row['Next_Reminder_Date']); ?></td>
+                        <td><span class="badge bg-secondary"><?= $daysSinceSale; ?> days</span></td>
+                        <td><span class="badge bg-<?= $statusBadge ?>"><?= $statusText; ?></span></td>
+                    </tr>
+                <?php endwhile; endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<?php include __DIR__ ."/../Footer.php";?>
+
+<?php include "footer.php"; ?>
 
 <?php if (!empty($alerts)): ?>
-<!-- Bootstrap Modal -->
+<!-- Stylish Bootstrap Modal -->
 <div class="modal fade" id="batteryAlertModal" tabindex="-1" aria-labelledby="batteryAlertLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow-lg">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="batteryAlertLabel">⚠️ Battery Alerts</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="batteryAlertLabel">⚡ Battery Alerts</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <ul class="list-group">
+        <ul class="list-group list-group-flush">
           <?php foreach ($alerts as $alert): ?>
-            <li class="list-group-item"><?= htmlspecialchars($alert) ?></li>
+            <li class="list-group-item">
+              <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
+              <?= htmlspecialchars($alert) ?>
+            </li>
           <?php endforeach; ?>
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
-      <?php endif; ?> <!-- Closing the if statement -->
-      
+  </div>
+</div>
+
+<script src="Battery_Electrolyte_Reminder\Js\myjs.js">
+ 
+</script>
+<?php endif; ?>

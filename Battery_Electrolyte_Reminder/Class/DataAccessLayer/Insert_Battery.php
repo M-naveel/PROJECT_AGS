@@ -1,5 +1,7 @@
 <?php
 include "DatabaseCon.php";
+// I dont need this page anymore add battery is being handled by the battery dal and battery bll
+
 
 // Default values for soft-delete
 $DeletedAt = null;

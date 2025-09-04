@@ -1,68 +1,72 @@
-   .sidebar {
+  .sidebar {
     width: 200px;
-    height:100vh;
-    background: #fff;
-    border: 2px solid  #000 ;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    padding: 20px;
-    position: fixed; /* Make it fixed on the side */
-    top:0px ;
+    height: 100vh;
+    position: fixed;
+    top: 0;
     left: 0;
-
+    background: #1e1e2f;
+    color: #fff;
+    padding-top: 70px;
+    overflow-y: auto;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
   }
 
-  
-
-  
-
-  .sidebar .logo h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .menu-section {
-    margin-bottom: 25px;
-  }
-
-  .menu-section h4 {
-    font-size: 12px;
-    /* color; */
-    text-transform: uppercase;
-    margin: 15px 0 5px;
-  }
+  .menu-section { margin-bottom: 1rem; }
 
   .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    color: #000;
+    display: block;
+    padding: 12px 20px;
+    color: #c7c7d1;
     text-decoration: none;
+    font-size: 15px;
     border-radius: 6px;
-    transition: background 0.2s;
+    transition: all 0.2s ease-in-out;
   }
 
-  .sidebar a:hover {
-    background: #f0f4ff;
-  }
-
+  .sidebar a:hover,
   .sidebar a.active {
-    background: white;
-    color: #000;
+    background: #007bff;
+    color: #fff;
   }
 
-  .sidebar a i {
-    width: 20px;
+  .sidebar .dropdown-toggle::after {
+    float: right;
+    margin-top: 6px;
   }
 
-  .menu-section:last-child a:last-child {
-    margin-bottom: 0;
+  .sidebar .dropdown-menu {
+    background: #2c2c3b;
+    border: none;
+    border-radius: 6px;
+    padding: 0;
+  }
+
+  .sidebar .dropdown-menu a {
+    color: #c7c7d1;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .sidebar .dropdown-menu a:hover,
+  .sidebar .dropdown-menu a.active {
+    background: #007bff;
+    color: #fff;
+  }
+
+  .sidebar hr {
+    border-top: 1px solid #444;
+    margin: 10px 0;
+  }
+
+  .menu_style {
+    list-style: none;
+    padding: 0;
   }
 
 /* to adjust the view_records screen */
  .Adjust_screen{
-    margin-left:200px;
+    margin-left:250px;
   }
   .menu_style{
     list-style: none;
@@ -70,3 +74,9 @@
     
   }
   
+  /* side bar color */
+   .custom-header {
+    background-color: #1e1e2f;
+    color: white;
+    text-align: center;
+  }

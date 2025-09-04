@@ -16,10 +16,10 @@ if (isset($_GET['Id'])) {
 
     if ($stmt->affected_rows > 0) {
         echo "<script>alert('Battery row-deleted successfully.'); 
-              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php';</script>";
+              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/record.php';</script>";
     } else {
         echo "<script>alert('No record found or already deleted.'); 
-              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php';</script>";
+              window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/record.php';</script>";
     }
 
     $stmt->close();

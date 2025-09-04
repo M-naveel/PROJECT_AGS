@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     } else {
         // Invalid login attempt
-        echo "<script>alert('Invalid credentials'); window.location.href='SignIn.php';</script>";
+        echo "<script>alert('Invalid credentials'); window.location.href='signIn.php';</script>";
     }
 }
 ?>

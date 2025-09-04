@@ -1,14 +1,16 @@
 <?php
-include __DIR__ . "/../DataAccessLayer/EditCustomer.php";
+include __DIR__ . "/../DataAccessLayer/DatabaseCon.php";
+
+include __DIR__ . "/../DataAccessLayer/customerDAL.php";
 
 class CustomerBLL {
     private $dal;
 
     public function __construct($conn) {
-        $this->dal = new EditCustomer($conn);
+        $this->dal = new CustomerDAL($conn);
     }
 
-    public function getCustomer($id) {
+    public function getCustomerById($id) {
         return $this->dal->getCustomerById($id);
     }
 
@@ -20,24 +22,15 @@ class CustomerBLL {
         // Optional: add validation here if needed
         return $this->dal->updateCustomer($id, $data);
     }
+     public function deleteCustomer($id,$deletedBy) {
+        // You can add validation or business logic here if needed
+        return $this->dal->softDeleteCustomer($id,$deletedBy);
+    }
+     public function addCustomer($data) {
+        // Optional: add validation here if needed
+        return $this->dal->insertCustomer( $data);
+    }
 }
 
-$customerBLL = new CustomerBLL($conn);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = intval($_POST['Id']);
-    $data = [
-        'Customer_Name' => $_POST['Customer_Name'],
-        'Phone_Number'  => $_POST['Phone_Number'],
-        'Email'         => $_POST['Email'],
-        'Battery_ID'    => $_POST['Battery_ID'],
-        'Sale_Date'     => $_POST['Sale_Date'],
-        'Updated_By'    => $_SESSION['username'] ?? 'admin',
-        'Updated_At'    => date('Y-m-d H:i:s')
-    ];
-
-    $customerBLL->updateCustomer($id, $data);
-    header("Location: ../../Screen/Customer_Info_Record.php");
-    exit;
-}
 ?>

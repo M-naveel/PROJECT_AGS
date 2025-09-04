@@ -1,4 +1,5 @@
 <?php
+// No need to use it because it is being handled by customerDAL 
 class EditCustomer {
     private $conn;
 
