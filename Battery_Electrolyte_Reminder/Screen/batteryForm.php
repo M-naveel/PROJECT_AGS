@@ -19,7 +19,7 @@ include __DIR__ . "/../navbar.php";
         <!-- Model & Warranty -->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="Model_Name" class="form-label fw-bold">Battery Model *</label>
+            <label for="Model_Name" class="form-label fw-bold">Battery Model <span class="text-danger">*</span></label>
             <input
               type="text"
               class="form-control"
@@ -35,7 +35,7 @@ include __DIR__ . "/../navbar.php";
           </div>
           
           <div class="col-md-6 mb-3">
-            <label for="Warranty_Period" class="form-label fw-bold">Warranty Period *</label>
+            <label for="Warranty_Period" class="form-label fw-bold">Warranty Period<span class="text-danger">* (in months)</span></label>
             <input
               type="text"
               class="form-control"
@@ -61,7 +61,7 @@ include __DIR__ . "/../navbar.php";
           </div>
 
           <div class="col-md-6 mb-3">
-            <label for="Battery_Code" class="form-label fw-bold">Battery Code *</label>
+            <label for="Battery_Code" class="form-label fw-bold">Product Code <span class="text-danger"><span class="text-danger">*</span></span></label>
             <input 
               type="text"
               class="form-control"

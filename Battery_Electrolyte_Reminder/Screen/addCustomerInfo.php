@@ -1,6 +1,6 @@
 <?php 
-$pageTitle ="Add Customer";
-$pagename ="Add Customer Info";
+$pageTitle ="Add Sale";
+$pagename ="Add Sale";
 include __DIR__ . "/../Class/BLLayer/authcheck.php"; 
 include __DIR__ . "/../Class/DataAccessLayer/customerDAL.php";
 include __DIR__ . "/../Class/DataAccessLayer/batteryDAL.php";
@@ -80,7 +80,7 @@ $batteries = $batteryDAL->getActiveBatteries();
                    required>
           </div>
           <div class="col-md-6 mb-3">
-            <label for="Warranty_No" class="form-label fw-bold">Warranty No *</label>
+            <label for="Warranty_No" class="form-label fw-bold">Warranty No<span class="text-danger">*</span></label>
             <input
               type="text"
               class="form-control"
@@ -91,7 +91,7 @@ $batteries = $batteryDAL->getActiveBatteries();
               required
             />
             <div class="form-text text-muted">
-              Must be exactly 12 alphanumeric characters
+              Must be exactly 12 numeric characters
             </div>
           </div>
         </div>
@@ -99,8 +99,8 @@ $batteries = $batteryDAL->getActiveBatteries();
 
         <!-- Buttons -->
         <div class="d-flex justify-content-end gap-2 mt-4">
-          <button type="submit" class="btn btn-success px-4">Submit</button>
-          <button type="button" class="btn btn-secondary px-4"
+          <button type="submit" class="btn custom-header mb-4 ">Submit</button>
+          <button type="button" class="btn btn-secondary mb-4 mx-3"
                   onclick="window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php';">
             Cancel
           </button>

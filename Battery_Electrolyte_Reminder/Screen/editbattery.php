@@ -29,12 +29,12 @@ include __DIR__ . "/../navbar.php";
 
         <!-- Warranty Number -->
         <div class="mb-3">
-          <label for="Warranty_Period" class="form-label fw-bold">Warranty Period</label>
+          <label for="Warranty_Period" class="form-label fw-bold">Warranty Period <span class="text-danger">* (in months)</span></label>
           <input type="text" 
                  id="Warranty_Period" 
                  name="Warranty_Period" 
                  class="form-control" 
-                 placeholder="e.g 4 to 6"
+                 placeholder="e.g 4 to 6 in months"
                  
                  value="<?= htmlspecialchars($battery['Warranty_Period']); ?>" 
                  required>
@@ -43,7 +43,7 @@ include __DIR__ . "/../navbar.php";
 
         <!-- Battery Code -->
         <div class="mb-3">
-          <label for="Battery_Code" class="form-label fw-bold">Battery Code</label>
+          <label for="Battery_Code" class="form-label fw-bold">Product Code</label>
           <input type="text" 
                  id="Battery_Code" 
                  name="Battery_Code" 
@@ -65,11 +65,11 @@ include __DIR__ . "/../navbar.php";
         </div>
 
         <!-- Buttons -->
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start gap-2 ">
           <a href="record.php" class="btn btn-secondary">
             <i class="bi bi-arrow-left-circle"></i> Cancel
           </a>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn custom-header">
             <i class="bi bi-save"></i> Update
           </button>
         </div>

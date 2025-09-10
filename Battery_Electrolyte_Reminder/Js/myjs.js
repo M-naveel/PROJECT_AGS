@@ -65,3 +65,17 @@ $(document).ready(function () {
         }
     });
 });
+// function for the loader at the dashboard 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const forms = document.querySelectorAll("form"); // select all forms
+    const loader = document.getElementById("loaderOverlay");
+
+    forms.forEach(form => {
+        form.addEventListener("submit", function () {
+            loader.style.display = "block"; // show loader
+        });
+    });
+});
+
+

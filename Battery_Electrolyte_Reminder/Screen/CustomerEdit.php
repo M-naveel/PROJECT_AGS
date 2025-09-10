@@ -1,6 +1,6 @@
 <?php
-$pagename = "Customer_Info";
-$Heading  = "Customer Info";
+$pagename = "Sale Edit";
+$Heading  = " Edit Sale";
 
 // Only include what's necessary
 include __DIR__ . "/../Class/BLLayer/authcheck.php"; 
@@ -85,19 +85,20 @@ include __DIR__ . "/../navbar.php";
               class="form-control"
               id="Warranty_No"
               name="Warranty_No"
+              value="<?= htmlspecialchars($Customer['Warranty_No']); ?>"
               pattern="^[A-Za-z0-9]{12}$"
               placeholder="e.g. AB12CD34EF56"
               required
             />
             <div class="form-text text-muted">
-              Must be exactly 12 alphanumeric characters
+              Must be exactly 12 numeric characters
             </div>
           </div>
      
 
         <!-- Buttons -->
         <div class="d-flex justify-content-end gap-2 mb-5">
-          <button type="submit" class="btn btn-success px-4">
+          <button type="submit" class="btn custom-header px-4">
             <i class="bi bi-check-circle me-1"></i> Update
           </button>
           <a href="customerInforecord.php" class="btn btn-outline-secondary px-4">

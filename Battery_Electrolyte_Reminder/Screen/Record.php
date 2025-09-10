@@ -24,9 +24,9 @@ $batteries = $batteryDAL->getAllBatteries();
         <table class="table table-hover table-striped align-middle" id="DataTable">
           <thead class="table-dark">
             <tr>
-              <th>Battery Id</th>
+              <th> Id</th>
               <th>Model Name</th>
-              <th>Warranty No</th>
+              <th>Warranty Period</th>
               <th>Battery Code</th>
               <th>Updated At</th>
               <th>Updated By</th>

@@ -1,8 +1,8 @@
 Attractive UI for dashboard
 <?php 
-$pageTitle ="DashBoard";
-$pagename ="DashBoard";
-$Heading ="Battery Electrolyte Reminder Dashboard";
+$pageTitle ="Electrolyte Refil Reminder";
+$pagename ="Electrolyte Refil Reminder";
+$Heading ="Battery Electrolyte Refil Reminder Dashboard";
 
 // Include authcheck to protect page
 include __DIR__ . "/./Class/BLLayer/authcheck.php";
@@ -103,26 +103,35 @@ $result = $filterBLL->getSalesWithFilters($filters);
                 </thead>
                 <tbody>
                 <?php 
-                $alerts = []; 
-                if ($result->num_rows > 0): 
-                    while($row = $result->fetch_assoc()):
-                        $todayTs = strtotime(date('Y-m-d'));
-                        $saleTs  = strtotime($row['Sale_Date']);
-                        $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
+               $alerts = []; 
+if ($result->num_rows > 0): 
+    while($row = $result->fetch_assoc()):
+        $todayTs = strtotime(date('Y-m-d'));
+        $saleTs  = strtotime($row['Sale_Date']);
+        $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
 
-                        // Status logic
-                        if ($daysSinceSale < 15) {
-                            $statusText  = 'Upcoming';
-                            $statusBadge = 'success';
-                        } elseif ($daysSinceSale % 15 === 0) {
-                            $statusText  = 'Due Today';
-                            $statusBadge = 'warning';
-                            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
-                        } else {
-                            $statusText  = 'Overdue';
-                            $statusBadge = 'danger';
-                            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
-                        }
+        // Warranty check
+        $warrantyDays = intval($row['Warranty_Period']) * 30; // assuming Warranty_No is in months
+        if ($daysSinceSale > $warrantyDays) {
+            continue; // skip reminders after warranty expiry
+        }
+
+        // Status logic (15-day cycle)
+        if ($daysSinceSale === 0) {
+            $statusText  = 'Just Purchased';
+            $statusBadge = 'info';
+        } elseif ($daysSinceSale % 15 === 0) {
+            $statusText  = 'Due Today';
+            $statusBadge = 'warning';
+            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
+        } elseif ($daysSinceSale % 15 < 15) {
+            $statusText  = 'Upcoming';
+            $statusBadge = 'success';
+        } else {
+            $statusText  = 'Overdue';
+            $statusBadge = 'danger';
+            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
+        }
                 ?>
                     <tr>
                         <td><?= htmlspecialchars($row['Customer_Name']); ?></td>
@@ -142,9 +151,10 @@ $result = $filterBLL->getSalesWithFilters($filters);
             <input type="hidden" name="customer" value="<?= htmlspecialchars($row['Customer_Name']); ?>">
             <input type="hidden" name="battery" value="<?= htmlspecialchars($row['Model_Name']); ?>">
             <input type="hidden" name="CustomerId" value="<?= htmlspecialchars($row['Id']); ?>">
-            <button type="submit" class="btn btn-sm btn-outline-primary ms-2">
+            <button type="submit" class="btn btn-sm btn-outline-primary ms-2" id="loader">
                 <i class="bi bi-envelope-fill"></i> Notify
             </button>
+            
         </form>
     <?php endif; ?>
 </span>
@@ -166,7 +176,7 @@ $result = $filterBLL->getSalesWithFilters($filters);
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content shadow-lg">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="batteryAlertLabel">⚡ Battery Alerts</h5>
+        <h5 class="modal-title" id="batteryAlertLabel">Electrolyte Refi Alerts</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -185,8 +195,29 @@ $result = $filterBLL->getSalesWithFilters($filters);
     </div>
   </div>
 </div>
+<!-- Loader Overlay (only one, global) -->
+<div id="loaderOverlay" style="
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(255,255,255,0.8); 
+    z-index: 9999; 
+    text-align: center;
+    padding-top: 20%;
+">
+    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;"></div>
+    <p class="mt-3 fw-bold">📧 Sending email, please wait...</p>
+</div>
+
 
 <!-- <script src="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder\Js\myjs.js"> -->
  
 </script>
 <?php endif; ?>
+<script>
+    
+
+</script>

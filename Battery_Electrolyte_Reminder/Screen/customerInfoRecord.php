@@ -1,6 +1,6 @@
 <?php 
-$pageTitle ="Customer_Info";
-$pagename ="Customer_Info";
+$pageTitle ="Sale";
+$pagename ="Sale";
 
 include __DIR__ . "/../Class/BLLayer/authcheck.php"; 
 include __DIR__ . "/../navbar.php";
@@ -15,7 +15,7 @@ $customers = $customerDAL->getAllCustomers();
     <div class="card-header text-white custom-header d-flex align-items-center justify-content-between">
       <h3 class="mb-0"><i class="bi bi-battery me-2"></i> <?= $pagename ?? "System" ?></h3>
       <a href="addCustomerInfo.php" class="btn btn-light btn-sm">
-        <i class="bi bi-plus-circle"></i> Add Battery
+        <i class="bi bi-plus-circle"></i> Add Sale
       </a>
     </div>
     <div class="card-body">
@@ -25,7 +25,7 @@ $customers = $customerDAL->getAllCustomers();
         <table class="table table-hover table-striped align-middle" id="DataTable">
           <thead class="table-dark text-center">
             <tr>
-              <th>Customer_Id</th>
+              <th>Id</th>
               <th>Customer_Name</th>
               <th>Phone_Number</th>
               <th>Email</th>
