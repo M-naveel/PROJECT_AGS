@@ -29,14 +29,14 @@ include __DIR__ . "/../navbar.php";
 
         <!-- Warranty Number -->
         <div class="mb-3">
-          <label for="Warranty_No" class="form-label fw-bold">Warranty No</label>
+          <label for="Warranty_Period" class="form-label fw-bold">Warranty Period</label>
           <input type="text" 
-                 id="Warranty_No" 
-                 name="Warranty_No" 
+                 id="Warranty_Period" 
+                 name="Warranty_Period" 
                  class="form-control" 
-                 placeholder="e.g. AB12CD34EF56"
-                 pattern="^[A-Za-z0-9]{12}$"
-                 value="<?= htmlspecialchars($battery['Warranty_No']); ?>" 
+                 placeholder="e.g 4 to 6"
+                 
+                 value="<?= htmlspecialchars($battery['Warranty_Period']); ?>" 
                  required>
           <div class="form-text">Must be exactly 12 alphanumeric characters.</div>
         </div>

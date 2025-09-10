@@ -9,6 +9,7 @@ include __DIR__ . "/./Class/BLLayer/authcheck.php";
 include __DIR__ . "/navbar.php";
 include __DIR__ ."/./Class/DataAccessLayer/DatabaseCon.php"; 
 include __DIR__ . "/./Class/DataAccessLayer/filterDAL.php";
+// include __DIR__ . "/./Class/BLLayer/BatteryReminder.php";
 include __DIR__ . "/./Class/BLLayer/filterBLL.php";
 
 $filterBLL = new FilterBLL($conn);
@@ -73,8 +74,8 @@ $result = $filterBLL->getSalesWithFilters($filters);
 
                 <!-- Submit Button -->
                 <div class="col-md-1 d-flex align-items-end">
-                    <button type="submit" class="btn btn-success w-100">
-                        <i class=" custom-header bi bi-search">Search</i>
+                    <button type="submit" class="btn  custom-header w-100">
+                        <i class=" bi bi-search">Search</i>
                     </button>
                 </div>
             </form>
@@ -131,7 +132,24 @@ $result = $filterBLL->getSalesWithFilters($filters);
                         <td><?= htmlspecialchars($row['Sale_Date']); ?></td>
                         <td><?= htmlspecialchars($row['Next_Reminder_Date']); ?></td>
                         <td><span class="badge bg-secondary"><?= $daysSinceSale; ?> days</span></td>
-                        <td><span class="badge bg-<?= $statusBadge ?>"><?= $statusText; ?></span></td>
+                        <td class="d-flex">
+    <span class="badge bg-<?= $statusBadge ?>"><?= $statusText; ?></span>
+    <span>
+
+    <?php if (in_array($statusText, ['Due Today', 'Overdue'])): ?>
+        <form action="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/BLLayer/sendReminder.php" method="POST" class="d-inline">
+            <input type="hidden" name="email" value="<?= htmlspecialchars($row['Email']); ?>">
+            <input type="hidden" name="customer" value="<?= htmlspecialchars($row['Customer_Name']); ?>">
+            <input type="hidden" name="battery" value="<?= htmlspecialchars($row['Model_Name']); ?>">
+            <input type="hidden" name="CustomerId" value="<?= htmlspecialchars($row['Id']); ?>">
+            <button type="submit" class="btn btn-sm btn-outline-primary ms-2">
+                <i class="bi bi-envelope-fill"></i> Notify
+            </button>
+        </form>
+    <?php endif; ?>
+</span>
+</td>
+
                     </tr>
                 <?php endwhile; endif; ?>
                 </tbody>

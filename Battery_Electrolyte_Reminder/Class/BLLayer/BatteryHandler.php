@@ -22,7 +22,7 @@ if (!$battery) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [
         'Model_Name'   => $_POST['Model_Name'],
-        'Warranty_No'  => $_POST['Warranty_No'],
+        'Warranty_Period'  => $_POST['Warranty_Period'],
         'Battery_Code' => $_POST['Battery_Code'],
         'Status'       => $_POST['Status'],
         'Updated_By'   => $_SESSION['username'],

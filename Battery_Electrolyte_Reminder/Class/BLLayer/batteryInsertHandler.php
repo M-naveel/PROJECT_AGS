@@ -8,7 +8,7 @@ $bll = new BatteryBLL($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [
         'Model_Name'   => $_POST['Model_Name'],
-        'Warranty_No'  => $_POST['Warranty_No'],
+        'Warranty_Period'  => $_POST['Warranty_Period'],
         'Status'       => $_POST['Status'],
         'Battery_Code' => $_POST['Battery_Code'],
         'Updated_By'   => $_SESSION['username'] ?? 'admin'

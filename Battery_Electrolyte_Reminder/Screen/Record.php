@@ -39,7 +39,7 @@ $batteries = $batteryDAL->getAllBatteries();
                 <tr>
                   <td><?= htmlspecialchars($battery['Id']); ?></td>
                   <td><?= htmlspecialchars($battery['Model_Name']); ?></td>
-                  <td><?= htmlspecialchars($battery['Warranty_No']); ?></td>
+                  <td><?= htmlspecialchars($battery['Warranty_Period']); ?></td>
                   <td><?= htmlspecialchars($battery['Battery_Code']); ?></td>
                   <td><?= htmlspecialchars($battery['Updated_At']); ?></td>
                   <td><?= htmlspecialchars($battery['Updated_By']); ?></td>

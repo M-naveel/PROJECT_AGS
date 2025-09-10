@@ -77,9 +77,26 @@ include __DIR__ . "/../navbar.php";
                  value="<?= htmlspecialchars($Customer['Sale_Date']); ?>" 
                  required>
         </div>
+        
+        <div class=" mb-3">
+            <label for="Warranty_No" class="form-label fw-bold">Warranty No *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Warranty_No"
+              name="Warranty_No"
+              pattern="^[A-Za-z0-9]{12}$"
+              placeholder="e.g. AB12CD34EF56"
+              required
+            />
+            <div class="form-text text-muted">
+              Must be exactly 12 alphanumeric characters
+            </div>
+          </div>
+     
 
         <!-- Buttons -->
-        <div class="d-flex justify-content-end gap-2 mt-4">
+        <div class="d-flex justify-content-end gap-2 mb-5">
           <button type="submit" class="btn btn-success px-4">
             <i class="bi bi-check-circle me-1"></i> Update
           </button>

@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'Email'         => $_POST['Email'],
         'Battery_ID'    => $_POST['Battery_ID'],
         'Sale_Date'     => $_POST['Sale_Date'],
+        'Warranty_No'     => $_POST['Warranty_No'],
         'Updated_By'    => $_SESSION['username'] ?? 'admin',
         'Updated_At'    => date('Y-m-d H:i:s')
     ];

@@ -26,13 +26,13 @@
       <li class="menu_style">
         <div class="dropdown">
           <a href="#" class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
-            Forms
+            Battery
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <a class="dropdown-item <?= ($currentPage == 'batteryForm.php') ? 'active' : '' ?>" 
                href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/batteryForm.php">Add Battery Info</a>
-            <a class="dropdown-item <?= ($currentPage == 'Record.php') ? 'active' : '' ?>" 
-               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/Record.php">View Records</a>
+            <a class="dropdown-item <?= ($currentPage == 'record.php') ? 'active' : '' ?>" 
+               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/record.php">View Records</a>
           </div>
         </div>
       </li>
@@ -42,7 +42,7 @@
       <li class="menu_style">
         <div class="dropdown mt-2">
           <a href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="true">
-            Views
+            Customer
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
             <a class="dropdown-item <?= ($currentPage == 'addCustomerInfo.php') ? 'active' : '' ?>" 
@@ -50,8 +50,13 @@
             <a class="dropdown-item <?= ($currentPage == 'customerInfoRecord.php') ? 'active' : '' ?>" 
                href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInfoRecord.php">Customer Info Record</a>
           </div>
+
         </div>
       </li>
     </ul>
+    <li class="menu_style">
+      <a class="dropdown-item <?= ($currentPage == 'emailLogs.php') ? 'active' : '' ?>" 
+             href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/emailLogs.php">Email Logs</a>
+    </li>
   </div>
 </div>

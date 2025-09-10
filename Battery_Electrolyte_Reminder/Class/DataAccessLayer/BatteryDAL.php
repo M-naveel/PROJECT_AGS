@@ -39,6 +39,13 @@ class BatteryDAL {
         return $batteries;
     }
 
+    // public function getBatterywithReminder(){
+    //     $sql =   " SELECT s.*, b.Model_Name, b.Reminder_Interval
+    //         FROM sales s
+    //         JOIN battery b ON s.Battery_ID = b.Id
+    //         WHERE s.is_deleted = 0;"
+    //         $row = $this->conn->query($sql)  }
+
     // public function getBatteryById($id) {
     //     $stmt = $this->conn->prepare("SELECT * FROM battery WHERE Id=?");
     //     $stmt->bind_param("i", $id);
@@ -76,14 +83,14 @@ class BatteryDAL {
     public function updateBattery($id, $data) {
         $stmt = $this->conn->prepare(
             "UPDATE battery 
-             SET Model_Name=?, Warranty_No=?, Battery_Code=?, 
+             SET Model_Name=?, Warranty_Period=?, Battery_Code=?, 
                  Updated_By=?, Updated_At=NOW() 
              WHERE Id=? AND is_deleted=0"
         );
         $stmt->bind_param(
             "ssssi",
             $data['Model_Name'],
-            $data['Warranty_No'],
+            $data['Warranty_Period'],
             $data['Battery_Code'],
             $data['Updated_By'],
             $id
@@ -94,13 +101,13 @@ class BatteryDAL {
 
 public function insertBattery($data) {
     $stmt = $this->conn->prepare(
-        "INSERT INTO battery (Model_Name, Warranty_No, Status, Battery_Code, Updated_At, Updated_By) 
+        "INSERT INTO battery (Model_Name, Warranty_Period, Status, Battery_Code, Updated_At, Updated_By) 
          VALUES (?, ?, ?, ?, NOW(), ?)"
     );
     $stmt->bind_param(
         "sssss",
         $data['Model_Name'],
-        $data['Warranty_No'],
+        $data['Warranty_Period'],
         $data['Status'],
         $data['Battery_Code'],
         $data['Updated_By'] // Usually from                                                                                                                                                         

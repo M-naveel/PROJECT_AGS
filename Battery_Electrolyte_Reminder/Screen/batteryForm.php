@@ -35,18 +35,17 @@ include __DIR__ . "/../navbar.php";
           </div>
           
           <div class="col-md-6 mb-3">
-            <label for="Warranty_No" class="form-label fw-bold">Warranty No *</label>
+            <label for="Warranty_Period" class="form-label fw-bold">Warranty Period *</label>
             <input
               type="text"
               class="form-control"
-              id="Warranty_No"
-              name="Warranty_No"
-              pattern="^[A-Za-z0-9]{12}$"
-              placeholder="e.g. AB12CD34EF56"
+              id="Warranty_Period"
+              name="Warranty_Period"
+              placeholder="e.g. 6 - 8"
               required
             />
             <div class="form-text text-muted">
-              Must be exactly 12 alphanumeric characters
+              Must be numeric characters
             </div>
           </div>
         </div>

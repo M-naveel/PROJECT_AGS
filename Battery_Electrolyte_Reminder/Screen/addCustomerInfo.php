@@ -79,6 +79,22 @@ $batteries = $batteryDAL->getActiveBatteries();
                    name="Sale_Date" 
                    required>
           </div>
+          <div class="col-md-6 mb-3">
+            <label for="Warranty_No" class="form-label fw-bold">Warranty No *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Warranty_No"
+              name="Warranty_No"
+              pattern="^[A-Za-z0-9]{12}$"
+              placeholder="e.g. AB12CD34EF56"
+              required
+            />
+            <div class="form-text text-muted">
+              Must be exactly 12 alphanumeric characters
+            </div>
+          </div>
+        </div>
         </div>
 
         <!-- Buttons -->

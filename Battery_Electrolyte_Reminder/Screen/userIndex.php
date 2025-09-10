@@ -5,11 +5,11 @@ $pagename ="DashBoard";
 $Heading ="Battery Electrolyte Reminder Dashboard";
 
 // Include authcheck to protect page
-include __DIR__ . "/./Class/BLLayer/authcheck.php";
-include __DIR__ . "/navbar.php";
-include __DIR__ ."/./Class/DataAccessLayer/DatabaseCon.php"; 
-include __DIR__ . "/./Class/DataAccessLayer/filterDAL.php";
-include __DIR__ . "/./Class/BLLayer/filterBLL.php";
+include __DIR__ . "/../Class/BLLayer/authcheck.php";
+include __DIR__ . "/../navbar.php";
+include __DIR__ ."/../Class/DataAccessLayer/DatabaseCon.php"; 
+include __DIR__ . "/../Class/DataAccessLayer/filterDAL.php";
+include __DIR__ . "/../Class/BLLayer/filterBLL.php";
 
 $filterBLL = new FilterBLL($conn);
 $filters = [
@@ -31,7 +31,7 @@ $result = $filterBLL->getSalesWithFilters($filters);
 
     <!-- Filter Section -->
     <div class="card shadow-sm mb-4">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header custom-header text-white">
             <strong>Filter Records</strong>
         </div>
         <div class="card-body">
@@ -73,7 +73,7 @@ $result = $filterBLL->getSalesWithFilters($filters);
 
                 <!-- Submit Button -->
                 <div class="col-md-1 d-flex align-items-end">
-                    <button type="submit" class="btn btn-success w-100">
+                    <button type="submit" class="btn custom-header w-100">
                         <i class="bi bi-search">Search</i>
                     </button>
                 </div>
@@ -140,7 +140,7 @@ $result = $filterBLL->getSalesWithFilters($filters);
     </div>
 </div>
 
-<?php include "footer.php"; ?>
+<?php include __DIR__ ."/../footer.php"; ?>
 
 <?php if (!empty($alerts)): ?>
 <!-- Stylish Bootstrap Modal -->

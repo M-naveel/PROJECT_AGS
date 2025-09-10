@@ -40,7 +40,8 @@ class CustomerDAL {
             s.Sale_Date,
             b.Model_Name AS Battery_Name,
             s.Updated_At,
-            s.Updated_By
+            s.Updated_By,
+            s.Warranty_No
         FROM sale s
         JOIN battery b ON s.Battery_ID = b.id
         WHERE s.Status = 'active' AND s.is_deleted = 0
@@ -94,18 +95,19 @@ class CustomerDAL {
 
     public function insertCustomer($data) {
         $stmt = $this->conn->prepare("
-            INSERT INTO sale(Customer_Name, Phone_Number, Email, Battery_ID, Sale_Date, Updated_By, Updated_At)
-            VALUES (?, ?, ?, ?, ?, ?, Now())
+            INSERT INTO sale(Customer_Name, Phone_Number, Email, Battery_ID, Sale_Date, Updated_By, Updated_At,Warranty_No)
+            VALUES (?, ?, ?, ?, ?, ?, Now(),?)
         ");
 
         $stmt->bind_param(
-            "sssiss",
+            "sssisss",
             $data['Customer_Name'],
             $data['Phone_Number'],
             $data['Email'],
             $data['Battery_ID'],
             $data['Sale_Date'],
             $data['Updated_By'],
+            $data['Warranty_No'],
         
         );
 
@@ -126,17 +128,18 @@ class CustomerDAL {
         $stmt = $this->conn->prepare(
             "UPDATE sale 
              SET Customer_Name=?, Phone_Number=?, Email=?, Battery_ID=?, 
-                 Updated_By=?, Updated_At=NOW(), Sale_Date=? 
+                 Updated_By=?, Updated_At=NOW(), Sale_Date=? , Warranty_No=? 
              WHERE Id=? AND is_deleted=0"
         );
         $stmt->bind_param(
-            "ssssssi",
+            "sssssssi",
             $data['Customer_Name'],
             $data['Phone_Number'],
             $data['Email'],
             $data['Battery_ID'],
             $data['Updated_By'],
             $data['Sale_Date'],
+            $data['Warranty_No'],
             $id
         );
         $stmt->execute();
