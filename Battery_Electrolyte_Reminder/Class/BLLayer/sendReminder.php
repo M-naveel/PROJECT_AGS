@@ -46,7 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body    = $message;
 
         if ($mail->send()) {
+            // it update the last date 
+            $sql = "UPDATE sale SET Last_Service_Date = CURDATE() WHERE Id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $customerId);
             $status = "Sent ";
+    $stmt->execute();
             echo "<script>
                     alert('✅ Email has been sent!');
                     window.location.href='/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php';

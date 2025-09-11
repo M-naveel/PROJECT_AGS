@@ -13,7 +13,7 @@ $batteries = $batteryDAL->getAllBatteries();
 <div class="container Adjust_screen my-5">
   <div class="card shadow-lg border-0">
     <div class="card-header  custom-header d-flex align-items-center justify-content-between">
-      <h3 class="mb-0"><i class="bi bi-battery me-2"></i> <?= $pagename ?? "System" ?></h3>
+      <h3 class="mb-0" id="title"><i class="bi bi-battery me-2"></i> <?= $pagename ?? "System" ?></h3>
       <a href="BatteryForm.php" class="btn btn-light btn-sm">
         <i class="bi bi-plus-circle"></i> Add Battery
       </a>

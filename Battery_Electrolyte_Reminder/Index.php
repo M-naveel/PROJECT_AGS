@@ -1,4 +1,4 @@
-Attractive UI for dashboard
+
 <?php 
 $pageTitle ="Electrolyte Refil Reminder";
 $pagename ="Electrolyte Refil Reminder";
@@ -96,8 +96,8 @@ $result = $filterBLL->getSalesWithFilters($filters);
                         <th>Email</th>
                         <th>Battery Model</th>
                         <th>Sale Date</th>
-                        <th>Next Reminder</th>
-                        <th>Days Since Sale</th>
+                        <th>Next Service Date</th>
+                        <th>Days since LastService
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -106,32 +106,39 @@ $result = $filterBLL->getSalesWithFilters($filters);
                $alerts = []; 
 if ($result->num_rows > 0): 
     while($row = $result->fetch_assoc()):
-        $todayTs = strtotime(date('Y-m-d'));
-        $saleTs  = strtotime($row['Sale_Date']);
-        $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
+       $todayTs   = strtotime(date('Y-m-d'));
+$saleTs    = strtotime($row['Sale_Date']);
+$expiryTs  = strtotime($row['Warranty_Expiry_Date']);
+$lastServiceDate = !empty($row['Last_Service_Date']) ? $row['Last_Service_Date'] : $row['Sale_Date'];
 
-        // Warranty check
-        $warrantyDays = intval($row['Warranty_Period']) * 30; // assuming Warranty_No is in months
-        if ($daysSinceSale > $warrantyDays) {
-            continue; // skip reminders after warranty expiry
-        }
+$serviceTs = strtotime($lastServiceDate);
+$todayTs   = strtotime(date("Y-m-d"));
 
-        // Status logic (15-day cycle)
-        if ($daysSinceSale === 0) {
-            $statusText  = 'Just Purchased';
-            $statusBadge = 'info';
-        } elseif ($daysSinceSale % 15 === 0) {
-            $statusText  = 'Due Today';
-            $statusBadge = 'warning';
-            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
-        } elseif ($daysSinceSale % 15 < 15) {
-            $statusText  = 'Upcoming';
-            $statusBadge = 'success';
-        } else {
-            $statusText  = 'Overdue';
-            $statusBadge = 'danger';
-            $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
-        }
+$daysSinceSale = max(0, floor(($todayTs - $serviceTs) / 86400));
+
+// $daysSinceSale = max(0, floor(($todayTs - $saleTs) / 86400));
+
+if ($todayTs > $expiryTs) {
+    // 🚨 Warranty expired logic
+    $statusText  = 'Warranty Expired';
+    $statusBadge = 'secondary';
+} else {
+    // Normal reminder logic
+    if ($daysSinceSale < 15) {
+        $statusText  = 'Upcoming';
+        $statusBadge = 'success';
+    } elseif ($daysSinceSale % 15 === 0) {
+        $statusText  = 'Due Today';
+        $statusBadge = 'warning';
+        $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is due today!";
+    } else {
+        $statusText  = 'Overdue';
+        $statusBadge = 'danger';
+        $alerts[] = "Battery for {$row['Customer_Name']} (Model: {$row['Model_Name']}) is overdue!";
+    }
+}
+
+
                 ?>
                     <tr>
                         <td><?= htmlspecialchars($row['Customer_Name']); ?></td>
@@ -142,8 +149,8 @@ if ($result->num_rows > 0):
                         <td><?= htmlspecialchars($row['Next_Reminder_Date']); ?></td>
                         <td><span class="badge bg-secondary"><?= $daysSinceSale; ?> days</span></td>
                         <td class="d-flex">
-    <span class="badge bg-<?= $statusBadge ?>"><?= $statusText; ?></span>
-    <span>
+    <span class="mt-4 badge bg-<?= $statusBadge ?>"><?= $statusText; ?></span>
+    <span >
 
     <?php if (in_array($statusText, ['Due Today', 'Overdue'])): ?>
         <form action="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Class/BLLayer/sendReminder.php" method="POST" class="d-inline">
@@ -151,8 +158,8 @@ if ($result->num_rows > 0):
             <input type="hidden" name="customer" value="<?= htmlspecialchars($row['Customer_Name']); ?>">
             <input type="hidden" name="battery" value="<?= htmlspecialchars($row['Model_Name']); ?>">
             <input type="hidden" name="CustomerId" value="<?= htmlspecialchars($row['Id']); ?>">
-            <button type="submit" class="btn btn-sm btn-outline-primary ms-2" id="loader">
-                <i class="bi bi-envelope-fill"></i> Notify
+            <button type="submit" class="btn btn-sm btn-outline-primary mt-4" id="loader">
+                <i class="bi bi-envelope-fill "></i> Notify
             </button>
             
         </form>

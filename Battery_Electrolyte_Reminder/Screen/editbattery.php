@@ -8,7 +8,7 @@ include __DIR__ . "/../navbar.php";
 <div class="container my-5 Adjust_Screen">
   <div class="card shadow-lg border-0">
     <div class="card-header custom-header text-white">
-      <h3 class="mb-0"><i class="bi bi-battery-charging me-2"></i> <?= $pagename ?? "System" ?></h3>
+      <h3 class="mb-0"><i class="bi bi-battery-charging me-2" ></i> <?= $pagename ?? "System" ?></h3>
     </div>
     <div class="card-body">
       <form method="POST" class="needs-validation" novalidate>

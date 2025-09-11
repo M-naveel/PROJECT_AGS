@@ -11,8 +11,8 @@ include __DIR__ . "/../navbar.php";
 <div class="container  Adjust_Screen">
   <div class="card shadow-lg border-0">
     <div class="card-header custom-header text-white">
-      <h3 class="mb-0">
-        <i class="bi bi-person-badge-fill me-2"></i> <?= $Heading ?>
+      <h3 class="mb-0" id="#title">
+        <i class="bi bi-person-badge-fill me-2" ></i> <?= $Heading ?>
       </h3>
     </div>
     <div class="card-body">

@@ -1,12 +1,15 @@
 <?php
 session_start();
+$pagename ="Email Logs";
+$Heading ="Email Logs";
+
 include __DIR__ . "/../navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/DatabaseCon.php";
 // DB connection
 ?>
 
 <div class="container Adjust_screen mt-5" >
-    <h2 class="mb-4 text-center">📧 Email Logs</h2>
+    <h2 class="mb-4 text-center" id="title">📧 Email Logs</h2>
 
     <table class="table table-bordered table-striped table-hove " id="DataTable">
         <thead class="table-dark">
