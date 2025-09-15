@@ -1,7 +1,9 @@
 <?php
-session_start();
+
 $pagename ="Email Logs";
 $Heading ="Email Logs";
+
+include __DIR__ . "/../Class/BLLayer/authcheck.php";
 
 include __DIR__ . "/../navbar.php";
 include __DIR__ . "/../Class/DataAccessLayer/DatabaseCon.php";

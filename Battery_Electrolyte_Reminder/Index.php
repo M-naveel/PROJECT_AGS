@@ -67,9 +67,9 @@ $Due = $stats['Dues'];
       <div class="card shadow-sm border-0 text-center">
         <div class="card-body">
           <i class="bi bi-bell-fill text-warning display-6"></i>
-          <h5 class="card-title mt-2">Electrolyte Alerts</h5>
+          <h5 class="card-title mt-2">Total Due batteries</h5>
           <h2 class="fw-bold"><?php echo $Due ?></h2>
-          <p class="text-muted">Attention Needed</p>
+          <p class="text-muted">For Refill Reminder</p>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@ $Due = $stats['Dues'];
           <i class="bi bi-calendar-event text-primary display-6"></i>
           <h5 class="card-title mt-2">Upcoming Maintenance</h5>
           <h2 class="fw-bold"><?php echo $stats['next']; ?></h2>
-          <p class="text-muted">Within 7 Days</p>
+          <p class="text-muted">Within 15 Days</p>
         </div>
       </div>
     </div>
@@ -222,7 +222,7 @@ if ($todayTs > $expiryTs) {
             <input type="hidden" name="customer" value="<?= htmlspecialchars($row['Customer_Name']); ?>">
             <input type="hidden" name="battery" value="<?= htmlspecialchars($row['Model_Name']); ?>">
             <input type="hidden" name="CustomerId" value="<?= htmlspecialchars($row['Id']); ?>">
-            <?php if($username=="ADMIN"){ ?>
+            <?php if($_SESSION['role'] === 'admin'){ ?>
             <button type="submit" class="btn btn-sm btn-outline-primary mt-4" id="loader">
                 <i class="bi bi-envelope-fill "></i> Notify
             </button>

@@ -95,20 +95,6 @@ $stats['next'] = $conn->query("
       AND t.Warranty_Expiry_Date >= CURDATE()
 ")->fetch_assoc()['upcoming_maintenances'];
 
-// 
-
-    // $stats['batteryHealthModerate'] = $conn->query("SELECT COUNT(*) as total FROM battery WHERE health='Moderate'")
-    //     ->fetch_assoc()['total'];
-    // $stats['batteryHealthCritical'] = $conn->query("SELECT COUNT(*) as total FROM battery WHERE health='Critical'")
-    //     ->fetch_assoc()['total'];
-
-    // // Electrolyte alerts
-    // $stats['electrolyteAlerts'] = $conn->query("SELECT COUNT(*) as total FROM battery WHERE electrolyte_due <= CURDATE()")
-    //     ->fetch_assoc()['total'];
-
-    // // Upcoming maintenance
-    // $stats['upcomingMaintenance'] = $conn->query("SELECT COUNT(*) as total FROM maintenance WHERE date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)")
-    //     ->fetch_assoc()['total'];
 
     // Customers
     $stats['customers'] = $conn->query("SELECT COUNT(*) as total FROM sale where is_deleted = '0' ")

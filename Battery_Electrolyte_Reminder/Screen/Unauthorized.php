@@ -1,4 +1,6 @@
 <?php
+include __DIR__ . "/../Class/BLLayer/authcheck.php";
+
 // No need for AuthCheck here, page is for error message only
 ?>
 <!DOCTYPE html>

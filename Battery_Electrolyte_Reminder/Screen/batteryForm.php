@@ -79,7 +79,7 @@ include __DIR__ . "/../navbar.php";
 
         <!-- Buttons -->
         <div class="d-flex justify-content-end gap-2 mt-4">
-          <button type="submit" class="btn btn-success px-4">
+          <button type="submit" class=" custom-header  btn btn-success px-4">
             <i class="bi bi-check-circle me-1"></i> Submit
           </button>
           <button type="button" class="btn btn-outline-secondary px-4" 

@@ -1,4 +1,5 @@
 <?php 
+// include __DIR__ . "/./Class/BLLayer/authcheck.php";
   include __DIR__ . "/header.php";
 
   
@@ -42,20 +43,20 @@
       <li class="menu_style">
         <div class="dropdown mt-2">
           <a href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="true">
-            Customer
+            Sale
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
             <a class="dropdown-item <?= ($currentPage == 'addCustomerInfo.php') ? 'active' : '' ?>" 
-               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/addCustomerInfo.php">Add Customer Info</a>
+               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/addCustomerInfo.php">Add Sale </a>
             <a class="dropdown-item <?= ($currentPage == 'customerInfoRecord.php') ? 'active' : '' ?>" 
-               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInfoRecord.php">Customer Info Record</a>
+               href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/customerInfoRecord.php">Sale Record</a>
           </div>
 
         </div>
       </li>
     </ul>
     <li class="menu_style">
-           <?php if($username=="ADMIN"){ ?>
+           <?php if($_SESSION['role'] === 'admin'){ ?>
       <a class="dropdown-item <?= ($currentPage == 'emailLogs.php') ? 'active' : '' ?>" 
              href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/emailLogs.php">Email Logs</a>
     <?php }?>
