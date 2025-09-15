@@ -55,13 +55,15 @@
       </li>
     </ul>
     <li class="menu_style">
+           <?php if($username=="ADMIN"){ ?>
       <a class="dropdown-item <?= ($currentPage == 'emailLogs.php') ? 'active' : '' ?>" 
              href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/emailLogs.php">Email Logs</a>
-    </li>
+    <?php }?>
+            </li>
      
     </li><li class="menu_style">
-      <a class="dropdown-item <?= ($currentPage == 'emailLogs.php') ? 'active' : '' ?>" 
-             href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/UserManual/UserManual.pdf"target="_blank"
+      <a class="dropdown-item <?= ($currentPage == 'User_Manual.php') ? 'active' : '' ?>" 
+             href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/UserManual/User_Manual.pdf"target="_blank"
 >UserManual</a>
   </div>
 </div>

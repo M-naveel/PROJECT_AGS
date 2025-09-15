@@ -18,7 +18,7 @@
             <p class="mt-3 text-muted">
                 You do not have permission to view this page.
             </p>
-            <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Screen/userIndex.php" 
+            <a href="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder/Index.php" 
                class="btn btn-primary mt-4">
                Return to Dashboard
             </a>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>  <?php echo isset($pageTitle) ? $pageTitle : "Default Title"; ?></title>
+    <title>  <?php #echo isset($pageTitle) ? $pageTitle : "Default Title"; ?> Battery Electrolyte Refil Reminder</title>
     
   </head>
   <body  >

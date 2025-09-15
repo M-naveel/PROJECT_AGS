@@ -20,15 +20,78 @@ $filters = [
     'end_date'   => $_GET['end_date'] ?? ''
 ];
 $result = $filterBLL->getSalesWithFilters($filters);
+$ca = new filterDAL($conn);
+$stats = $ca->getDashboardStats($conn);
+$battery = $stats['totalBatteries'];
+$Customers = $stats['customers'];
+$Due = $stats['Dues'];
 ?>
 
-<div class="container  my-5 Adjust_screen">
-    <div class="text-center mb-4">
+<div class="container Adjust_screen">
+    <div class="text-center mt-4">
         <h2 class="fw-bold text-primary" id="title">
-            🔋 Battery Electrolyte Reminder
+            🔋 Battery Electrolyte Refill Reminder
         </h2>
         <p class="text-muted">Track upcoming, due, and overdue battery reminders</p>
+ <div class="row g-4">
+
+    <!-- Total Batteries -->
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 text-center">
+        <div class="card-body">
+          <i class="bi bi-battery-charging text-success display-6"></i>
+          <h5 class="card-title mt-2">Total Batteries</h5>
+          <h2 class="fw-bold"><?php echo $battery ?></h2>
+          <p class="text-muted">Active in System</p>
+        </div>
+      </div>
     </div>
+
+    <!-- Battery Health -->
+    <div class="col-md-3">
+      <div class="card h-100 shadow-sm border-0 text-center">
+        <div class="card-body">
+          <i class="bi bi-heart-pulse text-danger display-6"></i>
+          <h5 class="card-title mt-2">Customer</h5>
+          <h6 class="fw-bold">
+            <h2 class="fw-bold"><?php echo $Customers ?></h2>
+</h6>
+
+          <p class="text-muted">Active in system</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electrolyte Alerts -->
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 text-center">
+        <div class="card-body">
+          <i class="bi bi-bell-fill text-warning display-6"></i>
+          <h5 class="card-title mt-2">Electrolyte Alerts</h5>
+          <h2 class="fw-bold"><?php echo $Due ?></h2>
+          <p class="text-muted">Attention Needed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Maintenance -->
+    <div class="col-md-3">
+      <div class="card shadow-sm border-0 text-center">
+        <div class="card-body">
+          <i class="bi bi-calendar-event text-primary display-6"></i>
+          <h5 class="card-title mt-2">Upcoming Maintenance</h5>
+          <h2 class="fw-bold"><?php echo $stats['next']; ?></h2>
+          <p class="text-muted">Within 7 Days</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- card ends here -->
 
     <!-- Filter Section -->
     <div class="card   shadow-sm mb-4">
@@ -85,9 +148,9 @@ $result = $filterBLL->getSalesWithFilters($filters);
     <!-- Table Section -->
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
-            <strong>Battery Records</strong>
+            <strong>Sale Records</strong>
         </div>
-        <div class="card-body">
+        <div class="card-body mb-5">
             <table class="table table-hover table-striped align-middle" id="DataTable">
                 <thead class="table-dark">
                     <tr>
@@ -105,6 +168,7 @@ $result = $filterBLL->getSalesWithFilters($filters);
                 <?php 
                $alerts = []; 
 if ($result->num_rows > 0): 
+
     while($row = $result->fetch_assoc()):
        $todayTs   = strtotime(date('Y-m-d'));
 $saleTs    = strtotime($row['Sale_Date']);
@@ -158,10 +222,11 @@ if ($todayTs > $expiryTs) {
             <input type="hidden" name="customer" value="<?= htmlspecialchars($row['Customer_Name']); ?>">
             <input type="hidden" name="battery" value="<?= htmlspecialchars($row['Model_Name']); ?>">
             <input type="hidden" name="CustomerId" value="<?= htmlspecialchars($row['Id']); ?>">
+            <?php if($username=="ADMIN"){ ?>
             <button type="submit" class="btn btn-sm btn-outline-primary mt-4" id="loader">
                 <i class="bi bi-envelope-fill "></i> Notify
             </button>
-            
+            <?Php }?>
         </form>
     <?php endif; ?>
 </span>
@@ -219,9 +284,6 @@ if ($todayTs > $expiryTs) {
     <p class="mt-3 fw-bold">📧 Sending email, please wait...</p>
 </div>
 
-
-<!-- <script src="/GitHub/PROJECT_AGS/Battery_Electrolyte_Reminder\Js\myjs.js"> -->
- 
 </script>
 <?php endif; ?>
 <script>

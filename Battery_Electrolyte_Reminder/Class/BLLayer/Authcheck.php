@@ -12,7 +12,7 @@ if (!isset($_SESSION['username'])) {
 $user_allowed_pages = [
 
     'addCustomerInfo.php',
-    'userIndex.php',
+    'Index.php',
     'customerInfoRecord.php'
 ];
 
